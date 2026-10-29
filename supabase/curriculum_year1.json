@@ -1,0 +1,1024 @@
+[
+ {
+  "year": 1,
+  "semester": "S1",
+  "label": "1er semestre",
+  "modules": [
+   {
+    "title": "Anatomie",
+    "hero": "art/hero_p08.webp",
+    "icon": "icons/p07_01.webp",
+    "description": null,
+    "children": [
+     {
+      "title": "Généralités",
+      "hero": "art/hero_p09.webp",
+      "icon": "icons/p08_01.webp",
+      "description": null,
+      "children": [],
+      "lessons": [
+       {
+        "title": "Généralités sur le corps humain",
+        "icon": "icons/p09_01.webp"
+       },
+       {
+        "title": "Généralités sur l'ostéologie",
+        "icon": "icons/p09_02.webp"
+       },
+       {
+        "title": "Généralités sur l'arthrologie",
+        "icon": "icons/p09_03.webp"
+       },
+       {
+        "title": "Généralités sur la myologie",
+        "icon": "icons/p09_04.webp"
+       },
+       {
+        "title": "Généralités sur l'angiologie",
+        "icon": "icons/p09_05.webp"
+       },
+       {
+        "title": "Généralités sur la névrologie",
+        "icon": "icons/p09_06.webp"
+       }
+      ],
+      "source_page": 9
+     },
+     {
+      "title": "Ostéologie",
+      "hero": "art/hero_p10.webp",
+      "icon": "icons/p08_02.webp",
+      "description": null,
+      "children": [],
+      "lessons": [
+       {
+        "title": "Clavicule",
+        "icon": "icons/p10_01.webp"
+       },
+       {
+        "title": "Scapula",
+        "icon": "icons/p10_02.webp"
+       },
+       {
+        "title": "Humérus",
+        "icon": "icons/p10_03.webp"
+       },
+       {
+        "title": "Ulna",
+        "icon": "icons/p10_04.webp"
+       },
+       {
+        "title": "Radius",
+        "icon": "icons/p10_05.webp"
+       },
+       {
+        "title": "Squelette de la main",
+        "icon": "icons/p10_06.webp"
+       }
+      ],
+      "source_page": 10
+     },
+     {
+      "title": "Arthrologie",
+      "hero": "art/hero_p11.webp",
+      "icon": "icons/p08_03.webp",
+      "description": null,
+      "children": [],
+      "lessons": [
+       {
+        "title": "Articulations de l'épaule",
+        "icon": "icons/p11_01.webp"
+       },
+       {
+        "title": "Articulation du coude",
+        "icon": "icons/p11_02.webp"
+       },
+       {
+        "title": "Poignet",
+        "icon": "icons/p11_03.webp"
+       },
+       {
+        "title": "Articulations de la main",
+        "icon": "icons/p11_04.webp"
+       }
+      ],
+      "source_page": 11
+     },
+     {
+      "title": "Myologie",
+      "hero": "art/hero_p12.webp",
+      "icon": "icons/p08_04.webp",
+      "description": null,
+      "children": [],
+      "lessons": [
+       {
+        "title": "Muscles de l'épaule",
+        "icon": "icons/p12_01.webp"
+       },
+       {
+        "title": "Muscles du bras",
+        "icon": "icons/p12_02.webp"
+       },
+       {
+        "title": "Muscles de l'avant-bras",
+        "icon": "icons/p12_03.webp"
+       },
+       {
+        "title": "Muscles de la main",
+        "icon": "icons/p12_04.webp"
+       }
+      ],
+      "source_page": 12
+     },
+     {
+      "title": "Angiologie",
+      "hero": "art/hero_p13.webp",
+      "icon": "icons/p08_05.webp",
+      "description": null,
+      "children": [],
+      "lessons": [
+       {
+        "title": "Artère axillaire",
+        "icon": "icons/p13_01.webp"
+       },
+       {
+        "title": "Artère brachiale",
+        "icon": "icons/p13_02.webp"
+       },
+       {
+        "title": "Artères radiale et ulnaire",
+        "icon": "icons/p13_03.webp"
+       },
+       {
+        "title": "Arcades de la main",
+        "icon": "icons/p13_04.webp"
+       },
+       {
+        "title": "Veines du membre thoracique",
+        "icon": "icons/p13_05.webp"
+       },
+       {
+        "title": "Lymphatiques du membre thoracique",
+        "icon": "icons/p13_06.webp"
+       }
+      ],
+      "source_page": 13
+     },
+     {
+      "title": "Névrologie",
+      "hero": "art/hero_p14.webp",
+      "icon": "icons/p08_06.webp",
+      "description": null,
+      "children": [],
+      "lessons": [
+       {
+        "title": "Plexus brachial",
+        "icon": "icons/p14_01.webp"
+       },
+       {
+        "title": "Nerf axillaire",
+        "icon": "icons/p14_02.webp"
+       },
+       {
+        "title": "Nerf radial",
+        "icon": "icons/p14_03.webp"
+       },
+       {
+        "title": "Nerf ulnaire",
+        "icon": "icons/p14_04.webp"
+       },
+       {
+        "title": "Nerf cutané antébrachial médial",
+        "icon": "icons/p14_05.webp"
+       },
+       {
+        "title": "Nerf médian",
+        "icon": "icons/p14_06.webp"
+       }
+      ],
+      "source_page": 14
+     }
+    ],
+    "lessons": [],
+    "source_page": 8
+   },
+   {
+    "title": "Biochimie",
+    "hero": "art/hero_p15.webp",
+    "icon": "icons/p07_02.webp",
+    "description": null,
+    "children": [
+     {
+      "title": "Les glucides",
+      "hero": "art/hero_p16.webp",
+      "icon": "icons/p15_01.webp",
+      "description": null,
+      "children": [],
+      "lessons": [
+       {
+        "title": "Classification et structure des glucides",
+        "icon": "icons/p16_01.webp"
+       },
+       {
+        "title": "Propriétés des glucides",
+        "icon": "icons/p16_02.webp"
+       },
+       {
+        "title": "Dérivés sucrés et complexes glucidiques",
+        "icon": "icons/p16_03.webp"
+       },
+       {
+        "title": "Digestion et absorption des glucides",
+        "icon": "icons/p16_04.webp"
+       },
+       {
+        "title": "Glycolyse",
+        "icon": "icons/p16_05.webp"
+       },
+       {
+        "title": "Néoglucogenèse",
+        "icon": "icons/p16_06.webp"
+       },
+       {
+        "title": "Le métabolisme du glycogène",
+        "icon": "icons/p16_07.webp"
+       },
+       {
+        "title": "Cycle de Krebs",
+        "icon": "icons/p16_08.webp"
+       },
+       {
+        "title": "La voie des pentoses phosphates",
+        "icon": "icons/p16_09.webp"
+       }
+      ],
+      "source_page": 16
+     },
+     {
+      "title": "Les protéines",
+      "hero": "art/hero_p17.webp",
+      "icon": "icons/p15_02.webp",
+      "description": null,
+      "children": [],
+      "lessons": [
+       {
+        "title": "Les Acides Aminés",
+        "icon": "icons/p17_01.webp",
+        "number": "01"
+       },
+       {
+        "title": "Les propriétés des acides aminés",
+        "icon": "icons/p17_02.webp",
+        "number": "02"
+       },
+       {
+        "title": "a. Les peptides",
+        "icon": "icons/p17_03.webp",
+        "number": "02"
+       },
+       {
+        "title": "Les protéines",
+        "icon": "icons/p17_04.webp",
+        "number": "03"
+       },
+       {
+        "title": "a. Les protéines (structure et fonctions)",
+        "icon": "icons/p17_05.webp",
+        "number": "03"
+       },
+       {
+        "title": "Métabolisme des acides aminés",
+        "icon": "icons/p17_06.webp",
+        "number": "04"
+       }
+      ],
+      "source_page": 17
+     }
+    ],
+    "lessons": [],
+    "source_page": 15
+   },
+   {
+    "title": "Biophysique",
+    "hero": "art/hero_p18.webp",
+    "icon": "icons/p07_03.webp",
+    "description": null,
+    "children": [],
+    "lessons": [
+     {
+      "title": "Biophysique des solutions",
+      "icon": "icons/p18_01.webp"
+     },
+     {
+      "title": "Électricité et phénomène bioélectrique",
+      "icon": "icons/p18_02.webp"
+     }
+    ],
+    "source_page": 18
+   },
+   {
+    "title": "Chimie",
+    "hero": "art/hero_p19.webp",
+    "icon": "icons/p07_04.webp",
+    "description": null,
+    "children": [],
+    "lessons": [
+     {
+      "title": "ATOMISTIQUE",
+      "icon": "icons/p19_01.webp"
+     },
+     {
+      "title": "THEORIE DE BOHR",
+      "icon": "icons/p19_02.webp"
+     },
+     {
+      "title": "Nombres quantiques et description des orbitales",
+      "icon": "icons/p19_03.webp"
+     },
+     {
+      "title": "Règles de remplissage",
+      "icon": "icons/p19_04.webp"
+     },
+     {
+      "title": "CLASSIFICATION PERIODIQUE ET PROPRIETES DES ELEMENTS",
+      "icon": "icons/p19_05.webp"
+     },
+     {
+      "title": "a. LA LIAISON CHIMIQUE",
+      "icon": "icons/p19_06.webp",
+      "number": "06"
+     },
+     {
+      "title": "(illisible dans le PDF — ligne 06 suivante, à confirmer)",
+      "icon": null,
+      "active": false,
+      "note": "Row between '06. a. LA LIAISON CHIMIQUE' and '07.' is blurred/corrupted in the source PDF (p19). Kept as an INACTIVE placeholder so it is not counted in progress; admin can fill in the title and activate."
+     },
+     {
+      "title": "Notions fondamentales de la thermodynamique",
+      "icon": "icons/p19_08.webp",
+      "number": "07"
+     },
+     {
+      "title": "Premier principe et thermochimie",
+      "icon": "icons/p19_09.webp",
+      "number": "08"
+     },
+     {
+      "title": "Deuxième principe",
+      "icon": "icons/p19_10.webp",
+      "number": "09"
+     },
+     {
+      "title": "Equilibre chimique",
+      "icon": "icons/p19_11.webp",
+      "number": "10"
+     }
+    ],
+    "source_page": 19
+   },
+   {
+    "title": "Cytologie",
+    "hero": "art/hero_p20.webp",
+    "icon": "icons/p07_05.webp",
+    "description": null,
+    "children": [],
+    "lessons": [
+     {
+      "title": "Les Cellules Eucaryotes",
+      "icon": "icons/p20_01.webp"
+     },
+     {
+      "title": "Généralités sur la cellule procaryote",
+      "icon": "icons/p20_02.webp"
+     },
+     {
+      "title": "Les virus",
+      "icon": "icons/p20_03.webp"
+     },
+     {
+      "title": "Microscopie",
+      "icon": "icons/p20_04.webp"
+     },
+     {
+      "title": "Méthodes et techniques dans l'étude des cellules",
+      "icon": "icons/p20_05.webp"
+     },
+     {
+      "title": "Fractionnement subcellulaire",
+      "icon": "icons/p20_06.webp"
+     },
+     {
+      "title": "LA MEMBRANE PLASMIQUE — Aspect ultrastructural",
+      "icon": "icons/p20_07.webp"
+     },
+     {
+      "title": "Membrane transport",
+      "icon": "icons/p20_08.webp"
+     },
+     {
+      "title": "Cours Adhérence cellulaire",
+      "icon": "icons/p20_09.webp"
+     }
+    ],
+    "source_page": 20
+   },
+   {
+    "title": "Embryologie",
+    "hero": "art/hero_p21.webp",
+    "icon": "icons/p07_06.webp",
+    "description": null,
+    "children": [],
+    "lessons": [
+     {
+      "title": "La spermatogenèse",
+      "icon": "icons/p21_01.webp"
+     },
+     {
+      "title": "Ovogenèse",
+      "icon": "icons/p21_02.webp"
+     },
+     {
+      "title": "Ovulation",
+      "icon": "icons/p21_03.webp"
+     },
+     {
+      "title": "Première semaine",
+      "icon": "icons/p21_04.webp"
+     },
+     {
+      "title": "Deuxième semaine du développement embryonnaire",
+      "icon": "icons/p21_05.webp"
+     },
+     {
+      "title": "Troisième semaine",
+      "icon": "icons/p21_06.webp"
+     },
+     {
+      "title": "Quatrième semaine",
+      "icon": "icons/p21_07.webp"
+     },
+     {
+      "title": "Annexes et placenta",
+      "icon": "icons/p21_08.webp"
+     },
+     {
+      "title": "Anomalies du développement",
+      "icon": "icons/p21_09.webp"
+     },
+     {
+      "title": "Cellules souches",
+      "icon": "icons/p21_10.webp"
+     }
+    ],
+    "source_page": 21
+   },
+   {
+    "title": "Statistiques",
+    "hero": "art/hero_p22.webp",
+    "icon": "icons/p07_07.webp",
+    "description": "Biostat — Part 1 · Part 2",
+    "children": [],
+    "lessons": [
+     {
+      "title": "Part 1",
+      "icon": "icons/p22_01.webp"
+     },
+     {
+      "title": "Part 2",
+      "icon": "icons/p22_02.webp"
+     }
+    ],
+    "source_page": 22
+   }
+  ]
+ },
+ {
+  "year": 1,
+  "semester": "S2",
+  "label": "2ème semestre",
+  "modules": [
+   {
+    "title": "SSH — Santé, Société et Humanités",
+    "hero": "art/hero_p24.webp",
+    "icon": "icons/p23_01.webp",
+    "description": null,
+    "children": [],
+    "lessons": [
+     {
+      "title": "Santé et Culture",
+      "icon": "icons/p24_01.webp"
+     },
+     {
+      "title": "Du Normal au Pathologique",
+      "icon": "icons/p24_02.webp"
+     },
+     {
+      "title": "soignant - soigné",
+      "icon": "icons/p24_03.webp"
+     },
+     {
+      "title": "Décision Médicale",
+      "icon": "icons/p24_04.webp"
+     },
+     {
+      "title": "bioethics",
+      "icon": "icons/p24_05.webp"
+     },
+     {
+      "title": "L'éthique médicale",
+      "icon": "icons/p24_06.webp"
+     },
+     {
+      "title": "DEONTOLOGIE",
+      "icon": "icons/p24_07.webp"
+     },
+     {
+      "title": "DROIT MEDICAL",
+      "icon": "icons/p24_08.webp"
+     },
+     {
+      "title": "Les déterminants de santé craduation",
+      "icon": "icons/p24_09.webp"
+     },
+     {
+      "title": "Indicateurs de santé",
+      "icon": "icons/p24_10.webp"
+     },
+     {
+      "title": "notions de besoin de demande et d offre de soins",
+      "icon": "icons/p24_11.webp"
+     }
+    ],
+    "source_page": 24
+   },
+   {
+    "title": "Anatomie",
+    "hero": "art/hero_p25.webp",
+    "icon": "icons/p23_02.webp",
+    "description": null,
+    "children": [
+     {
+      "title": "Généralités",
+      "hero": "art/hero_p25.webp",
+      "icon": "icons/p25_01.webp",
+      "description": "Listed in the PDF chapter list (p25) but no lesson page was provided.",
+      "children": [],
+      "lessons": [],
+      "source_page": 25
+     },
+     {
+      "title": "Ostéologie",
+      "hero": "art/hero_p26.webp",
+      "icon": "icons/p25_02.webp",
+      "description": null,
+      "children": [],
+      "lessons": [
+       {
+        "title": "Os coxal",
+        "icon": "icons/p26_01.webp"
+       },
+       {
+        "title": "Fémur",
+        "icon": "icons/p26_02.webp"
+       },
+       {
+        "title": "La rotule",
+        "icon": "icons/p26_03.webp"
+       },
+       {
+        "title": "Fibula",
+        "icon": "icons/p26_04.webp"
+       },
+       {
+        "title": "Le tibia",
+        "icon": "icons/p26_05.webp"
+       },
+       {
+        "title": "Squelette du pied",
+        "icon": "icons/p26_06.webp"
+       }
+      ],
+      "source_page": 26
+     },
+     {
+      "title": "Arthrologie",
+      "hero": "art/hero_p27.webp",
+      "icon": "icons/p25_03.webp",
+      "description": null,
+      "children": [],
+      "lessons": [
+       {
+        "title": "ARTICULATION DE LA HANCHE",
+        "icon": "icons/p27_01.webp"
+       },
+       {
+        "title": "articulation du genou",
+        "icon": "icons/p27_02.webp"
+       },
+       {
+        "title": "articulation de la cheville",
+        "icon": "icons/p27_03.webp"
+       },
+       {
+        "title": "ANKLE JOINT",
+        "icon": "icons/p27_04.webp"
+       }
+      ],
+      "source_page": 27
+     },
+     {
+      "title": "Myologie",
+      "hero": "art/hero_p28.webp",
+      "icon": "icons/p25_04.webp",
+      "description": null,
+      "children": [],
+      "lessons": [
+       {
+        "title": "Muscles de la cuisse",
+        "icon": "icons/p28_01.webp"
+       },
+       {
+        "title": "Muscles de la région glutéale",
+        "icon": "icons/p28_02.webp"
+       },
+       {
+        "title": "Muscles du pied",
+        "icon": "icons/p28_03.webp"
+       },
+       {
+        "title": "Muscles de la jambe",
+        "icon": "icons/p28_04.webp"
+       }
+      ],
+      "source_page": 28
+     },
+     {
+      "title": "Angiologie",
+      "hero": "art/hero_p29.webp",
+      "icon": "icons/p25_05.webp",
+      "description": null,
+      "children": [],
+      "lessons": [
+       {
+        "title": "Artère fémorale",
+        "icon": "icons/p29_01.webp"
+       },
+       {
+        "title": "Artère poplitée",
+        "icon": "icons/p29_02.webp"
+       },
+       {
+        "title": "Artères de la jambe et du pied",
+        "icon": "icons/p29_03.webp"
+       },
+       {
+        "title": "Veines du membre pelvien",
+        "icon": "icons/p29_04.webp"
+       },
+       {
+        "title": "Vaisseaux lymphatiques du membre pelvien",
+        "icon": "icons/p29_05.webp"
+       }
+      ],
+      "source_page": 29
+     },
+     {
+      "title": "Neurologie",
+      "hero": "art/hero_p30.webp",
+      "icon": "icons/p25_06.webp",
+      "description": null,
+      "children": [],
+      "lessons": [
+       {
+        "title": "Plexus lombaire",
+        "icon": "icons/p30_01.webp",
+        "number": "02"
+       },
+       {
+        "title": "Plexus sacrée",
+        "icon": "icons/p30_02.webp",
+        "number": "03"
+       }
+      ],
+      "source_page": 30
+     }
+    ],
+    "lessons": [],
+    "source_page": 25
+   },
+   {
+    "title": "Biochimie",
+    "hero": "art/hero_p31.webp",
+    "icon": "icons/p23_03.webp",
+    "description": null,
+    "children": [
+     {
+      "title": "Bioénergétique",
+      "hero": "art/hero_p32.webp",
+      "icon": "icons/p31_01.webp",
+      "description": "La chaîne respiratoire et phosphorylation oxydative · Métabolisme énergétique",
+      "children": [],
+      "lessons": [
+       {
+        "title": "Les Concepts de la bioénergétique",
+        "icon": "icons/p32_01.webp"
+       },
+       {
+        "title": "la chaine respiratoire et phosphorylation oxydative",
+        "icon": "icons/p32_02.webp"
+       }
+      ],
+      "source_page": 32
+     },
+     {
+      "title": "Les enzymes",
+      "hero": "art/hero_p33.webp",
+      "icon": "icons/p31_02.webp",
+      "description": "Structure et fonction · Cinétique enzymatique · Régulation",
+      "children": [],
+      "lessons": [
+       {
+        "title": "Introduction à l'enzymologie",
+        "icon": "icons/p33_01.webp"
+       },
+       {
+        "title": "Cinétique enzymatique",
+        "icon": "icons/p33_02.webp"
+       },
+       {
+        "title": "Les enzymes allostériques",
+        "icon": "icons/p33_03.webp"
+       }
+      ],
+      "source_page": 33
+     },
+     {
+      "title": "Les lipides",
+      "hero": "art/hero_p34.webp",
+      "icon": "icons/p31_03.webp",
+      "description": "Structure des lipides · Métabolisme lipidique · Régulation",
+      "children": [],
+      "lessons": [
+       {
+        "title": "Caractères généraux des lipides",
+        "icon": "icons/p34_01.webp"
+       },
+       {
+        "title": "Structures et propriétés des lipides simples",
+        "icon": "icons/p34_02.webp"
+       },
+       {
+        "title": "Structures et propriétés des lipides complexes",
+        "icon": "icons/p34_03.webp"
+       },
+       {
+        "title": "Métabolisme des acides gras (AG)",
+        "icon": "icons/p34_04.webp"
+       },
+       {
+        "title": "Métabolisme des corps cétoniques",
+        "icon": "icons/p34_05.webp"
+       },
+       {
+        "title": "Métabolisme des phospholipides",
+        "icon": "icons/p34_06.webp"
+       },
+       {
+        "title": "Métabolisme des triglycérides",
+        "icon": "icons/p34_07.webp"
+       },
+       {
+        "title": "Métabolisme du cholestérol",
+        "icon": "icons/p34_08.webp"
+       },
+       {
+        "title": "Lipoprotéines",
+        "icon": "icons/p34_09.webp"
+       },
+       {
+        "title": "Révision générale des lipides",
+        "icon": "icons/p34_10.webp"
+       }
+      ],
+      "source_page": 34
+     }
+    ],
+    "lessons": [],
+    "source_page": 31
+   },
+   {
+    "title": "Biophysique",
+    "hero": "art/hero_p35.webp",
+    "icon": "icons/p23_04.webp",
+    "description": null,
+    "children": [],
+    "lessons": [
+     {
+      "title": "Optique géométrique",
+      "icon": "icons/p35_01.webp"
+     },
+     {
+      "title": "Biophysique des rayonnements",
+      "icon": "icons/p35_02.webp"
+     }
+    ],
+    "source_page": 35
+   },
+   {
+    "title": "Chimie",
+    "hero": "art/hero_p36.webp",
+    "icon": "icons/p23_05.webp",
+    "description": null,
+    "children": [
+     {
+      "title": "Chimie générale",
+      "hero": "art/hero_p37.webp",
+      "icon": "icons/p36_01.webp",
+      "description": null,
+      "children": [],
+      "lessons": [
+       {
+        "title": "Les solutions",
+        "icon": "icons/p37_01.webp"
+       },
+       {
+        "title": "pH des solutions aqueuses",
+        "icon": "icons/p37_02.webp"
+       },
+       {
+        "title": "Acide-base",
+        "icon": "icons/p37_03.webp"
+       },
+       {
+        "title": "Cinétique",
+        "icon": "icons/p37_04.webp"
+       }
+      ],
+      "source_page": 37
+     },
+     {
+      "title": "Chimie organique",
+      "hero": "art/hero_p38.webp",
+      "icon": "icons/p36_02.webp",
+      "description": null,
+      "children": [],
+      "lessons": [
+       {
+        "title": "Définitions et concepts généraux",
+        "icon": "icons/p38_01.webp"
+       },
+       {
+        "title": "Nomenclature des hydrocarbures",
+        "icon": "icons/p38_02.webp"
+       },
+       {
+        "title": "Nomenclature des fonctions organiques",
+        "icon": "icons/p38_03.webp"
+       },
+       {
+        "title": "Isomérie et stéréochimie",
+        "icon": "icons/p38_04.webp"
+       },
+       {
+        "title": "Les grandes réactions en chimie organique",
+        "icon": "icons/p38_05.webp"
+       }
+      ],
+      "source_page": 38
+     }
+    ],
+    "lessons": [],
+    "source_page": 36
+   },
+   {
+    "title": "Cytologie",
+    "hero": "art/hero_p39.webp",
+    "icon": "icons/p23_06.webp",
+    "description": null,
+    "children": [],
+    "lessons": [
+     {
+      "title": "Le cytosquelette",
+      "icon": "icons/p39_01.webp"
+     },
+     {
+      "title": "Le compartiment cytosolique",
+      "icon": "icons/p39_02.webp"
+     },
+     {
+      "title": "Système endomembranaire",
+      "icon": "icons/p39_03.webp"
+     },
+     {
+      "title": "Noyau et cycle cellulaire",
+      "icon": "icons/p39_04.webp"
+     },
+     {
+      "title": "Mitochondrie",
+      "icon": "icons/p39_05.webp"
+     }
+    ],
+    "source_page": 39
+   },
+   {
+    "title": "Histologie",
+    "hero": "art/hero_p40.webp",
+    "icon": "icons/p23_07.webp",
+    "description": null,
+    "children": [],
+    "lessons": [
+     {
+      "title": "Épithélium de revêtement",
+      "icon": "icons/p40_01.webp"
+     },
+     {
+      "title": "Les épithéliums glandulaires",
+      "icon": "icons/p40_02.webp"
+     },
+     {
+      "title": "Tissu conjonctif",
+      "icon": "icons/p40_03.webp"
+     },
+     {
+      "title": "Le tissu cartilagineux",
+      "icon": "icons/p40_04.webp"
+     },
+     {
+      "title": "Tissu osseux et ossification",
+      "icon": "icons/p40_05.webp"
+     },
+     {
+      "title": "Tissu sanguin",
+      "icon": "icons/p40_06.webp"
+     },
+     {
+      "title": "Les tissus musculaires",
+      "icon": "icons/p40_07.webp"
+     }
+    ],
+    "source_page": 40
+   },
+   {
+    "title": "Physiologie",
+    "hero": "art/hero_p41.webp",
+    "icon": "icons/p23_08.webp",
+    "description": null,
+    "children": [],
+    "lessons": [
+     {
+      "title": "Communication intercellulaire",
+      "icon": "icons/p41_01.webp"
+     },
+     {
+      "title": "Physiologie du neurone",
+      "icon": "icons/p41_02.webp"
+     },
+     {
+      "title": "Les synapses",
+      "icon": "icons/p41_03.webp"
+     },
+     {
+      "title": "Physiologie du muscle",
+      "icon": "icons/p41_04.webp"
+     },
+     {
+      "title": "Les compartiments liquidiens",
+      "icon": "icons/p41_05.webp"
+     },
+     {
+      "title": "Bioénergétique",
+      "icon": "icons/p41_06.webp"
+     },
+     {
+      "title": "Système nerveux autonome (SNA)",
+      "icon": "icons/p41_07.webp"
+     },
+     {
+      "title": "Thermorégulation",
+      "icon": "icons/p41_08.webp"
+     }
+    ],
+    "source_page": 41
+   },
+   {
+    "title": "Statistiques",
+    "hero": "art/hero_p42.webp",
+    "icon": "icons/p23_09.webp",
+    "description": "Biostat — Part 1 · Part 2",
+    "children": [],
+    "lessons": [
+     {
+      "title": "Part 1",
+      "icon": "icons/p42_01.webp"
+     },
+     {
+      "title": "Part 2",
+      "icon": "icons/p42_02.webp"
+     }
+    ],
+    "source_page": 42
+   }
+  ]
+ }
+]
