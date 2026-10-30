@@ -3,6 +3,7 @@ import { pomodoroApi, sessionsApi, DEFAULT_POMODORO, errorMessage } from '../lib
 import { fmtClock } from '../lib/dates.js';
 import { useToast } from './toast.jsx';
 import { prefsApi } from '../lib/api.js';
+import { TRACKS, normalizeKind } from '../lib/tracks.js';
 import { getCtx, unlockAudio, playAlarm, scheduleAlarm, scheduledAlarm, stopAlarm, setAmbient, audioRunning } from '../lib/audio.js';
 
 const TimerCtx = createContext(null);
@@ -15,7 +16,7 @@ export function playChime() { playAlarm({ short: true }); }
 
 const MUSIC_KEY = 'resumed.music.v1';
 function readMusicPref() {
-  try { const v = JSON.parse(window.localStorage.getItem(MUSIC_KEY) || 'null'); if (v && typeof v === 'object') return v; } catch { /* ignore */ }
+  try { const v = JSON.parse(window.localStorage.getItem(MUSIC_KEY) || 'null'); if (v && typeof v === 'object') return { volume: 0.6, ...v, kind: normalizeKind(v.kind) }; } catch { /* ignore */ }
   return { kind: 'none', volume: 0.6 };
 }
 
@@ -103,8 +104,8 @@ export function TimerProvider({ children }) {
   const previewTimer = useRef(null);
   useEffect(() => {
     prefsApi.get().then((p) => {
-      const m = p && p.data && p.data.pomodoro_music;
-      if (m && typeof m === 'object' && m.kind) { setMusicState(m); try { window.localStorage.setItem(MUSIC_KEY, JSON.stringify(m)); } catch { /* ignore */ } }
+      let m = p && p.data && p.data.pomodoro_music;
+      if (m && typeof m === 'object' && m.kind) { m = { volume: 0.6, ...m, kind: normalizeKind(m.kind) }; setMusicState(m); try { window.localStorage.setItem(MUSIC_KEY, JSON.stringify(m)); } catch { /* ignore */ } }
     }).catch(() => {});
     // browsers only allow sound after a user gesture: unlock on the first interaction
     const unlock = () => { const c = unlockAudio(); if (c) c.resume().then(() => setAudioOn(true)).catch(() => {}); };
@@ -114,10 +115,15 @@ export function TimerProvider({ children }) {
     return () => { window.removeEventListener('pointerdown', unlock, true); window.removeEventListener('keydown', unlock, true); if (c) c.removeEventListener('statechange', onState); };
   }, []);
   const focusRunning = !!(running && st.phase === 'focus');
+  const musicActive = !!((focusRunning || preview) && music.kind !== 'none');
+  const [ytFailed, setYtFailed] = useState({});            // YouTube track that cannot play here -> synthesised fallback
+  const track = TRACKS[music.kind] || TRACKS.none;
+  const synthKind = !track.synth ? 'none' : track.yt && !ytFailed[music.kind] ? 'none' : track.synth;
   useEffect(() => {
-    if (focusRunning && music.kind !== 'none') setAmbient(music.kind, music.volume);
-    else if (!preview) setAmbient('none');
-  }, [focusRunning, music, preview, audioOn]);
+    if (musicActive && synthKind !== 'none') setAmbient(synthKind, music.volume);
+    else setAmbient('none');
+  }, [musicActive, synthKind, music.volume, audioOn]);
+  const markYtFailed = useCallback((kind) => setYtFailed((x) => ({ ...x, [kind]: true })), []);
   useEffect(() => () => setAmbient('none'), []);
   const setMusic = useCallback((patch) => {
     setMusicState((cur) => {
@@ -129,11 +135,11 @@ export function TimerProvider({ children }) {
     unlockAudio();
     if (patch.kind && !focusRunning) {           // not in a focus session: let them hear it for a few seconds
       clearTimeout(previewTimer.current);
-      if (patch.kind === 'none') { setPreview(false); setAmbient('none'); return; }
-      setPreview(true); setAmbient(patch.kind, (patch.volume != null ? patch.volume : music.volume));
-      previewTimer.current = setTimeout(() => setPreview(false), 9000);
+      if (patch.kind === 'none') { setPreview(false); return; }
+      setPreview(true);
+      previewTimer.current = setTimeout(() => setPreview(false), 12000);
     }
-  }, [focusRunning, music.volume]);
+  }, [focusRunning]);
 
   // ---- the alarm is scheduled on the audio clock ahead of time, so it rings on time even in a background tab
   const soundOn = !!(settings && settings.sound_enabled);
@@ -176,7 +182,7 @@ export function TimerProvider({ children }) {
 
   const value = {
     loading: !data && !error, error, data, timer: st, elapsed, remaining, busy,
-    settings, settingsSaved, completedToday, music, setMusic, audioOn, preview,
+    settings, settingsSaved, completedToday, music, setMusic, audioOn, preview, musicActive, ytFailed, markYtFailed,
     reloadSettings: loadSettings, refreshToday, sync,
     start: (m, l, tk) => { unlockAudio(); return call(() => pomodoroApi.start(m, l, tk)); },
     pause: () => call(pomodoroApi.pause),

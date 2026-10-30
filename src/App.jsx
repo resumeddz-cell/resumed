@@ -5,6 +5,7 @@ import { useRoute, match, navigate } from './lib/router.js';
 import { AuthProvider, useAuth } from './state/auth.jsx';
 import { CurriculumProvider } from './state/data.jsx';
 import { TimerProvider } from './state/timer.jsx';
+import MusicDock from './components/MusicDock.jsx';
 import { ToastProvider, useToast } from './state/toast.jsx';
 import { Loader, ErrorBox, Empty } from './components/ui.jsx';
 import Layout from './components/Layout.jsx';
@@ -80,6 +81,7 @@ function Gate() {
     <CurriculumProvider>
       <TimerProvider>
         <ApprovedApp route={route} />
+        <MusicDock />
       </TimerProvider>
     </CurriculumProvider>
   );
