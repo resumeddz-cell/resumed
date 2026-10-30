@@ -2,7 +2,8 @@ import { sectionInfo } from '../lib/years.js';
 import React, { useEffect, useState } from 'react';
 import { LuLogOut, LuSave, LuGraduationCap } from 'react-icons/lu';
 import { useAuth } from '../state/auth.jsx';
-import { useTimer, playChime } from '../state/timer.jsx';
+import { useTimer } from '../state/timer.jsx';
+import { playAlarm, stopAlarm } from '../lib/audio.js';
 import { profileApi, errorMessage } from '../lib/api.js';
 import { auth } from '../lib/supabase.js';
 import { navigate } from '../lib/router.js';
@@ -73,11 +74,12 @@ export default function SettingsPage() {
                 <Field label="Long break (minutes)"><input type="number" min={1} max={120} value={pomo.long_break_minutes} onChange={num('long_break_minutes')} /></Field>
                 <Field label="Focus sessions before a long break"><input type="number" min={2} max={12} value={pomo.sessions_before_long_break} onChange={num('sessions_before_long_break')} /></Field>
               </div>
-              <label className="check-line"><input type="checkbox" checked={!!pomo.sound_enabled} onChange={(e) => setPomo((p) => ({ ...p, sound_enabled: e.target.checked }))} /> Play a sound when a session ends</label>
+              <label className="check-line"><input type="checkbox" checked={!!pomo.sound_enabled} onChange={(e) => setPomo((p) => ({ ...p, sound_enabled: e.target.checked }))} /> Ring a loud bell and alarm when a session ends</label>
               {pomoErr && <p className="form-error">Please enter whole numbers within the allowed ranges.</p>}
               <div className="row gap wrap">
                 <button className="btn btn-primary" disabled={savingPomo || !!pomoErr}><LuSave aria-hidden /> {savingPomo ? 'Saving…' : 'Save'}</button>
-                <button type="button" className="btn" onClick={playChime}>Test sound</button>
+                <button type="button" className="btn" onClick={() => playAlarm()}>Test alarm</button>
+                <button type="button" className="btn" onClick={stopAlarm}>Stop</button>
                 <button type="button" className="btn btn-ghost" onClick={() => setPomo((p) => ({ ...p, focus_minutes: 25, short_break_minutes: 5, long_break_minutes: 15, sessions_before_long_break: 4 }))}>Default durations (25/5/15)</button>
               </div>
               {!tm.settingsSaved && <p className="muted small">Using the default durations. Your choice is stored once you press Save.</p>}

@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { LuPlay, LuPause, LuRotateCcw, LuSkipForward, LuVolume2, LuVolumeX, LuSettings } from 'react-icons/lu';
-import { useTimer, PHASE_LABEL, playChime } from '../state/timer.jsx';
+import { LuPlay, LuPause, LuRotateCcw, LuSkipForward, LuVolume2, LuVolumeX, LuSettings, LuPiano, LuGuitar, LuCloudRain, LuMusic, LuBellRing } from 'react-icons/lu';
+import { stopAlarm, unlockAudio, playAlarm } from '../lib/audio.js';
+import { useTimer, PHASE_LABEL } from '../state/timer.jsx';
 import { useCurriculum } from '../state/data.jsx';
 import { plannerApi } from '../lib/api.js';
 import { fmtClock, toISODate, today, addDays } from '../lib/dates.js';
@@ -9,6 +10,36 @@ import { useToast } from '../state/toast.jsx';
 import { useModuleOptions } from './Planner.jsx';
 import { Loader, ErrorBox, Field } from '../components/ui.jsx';
 import { StudyingMascot } from '../components/Mascot.jsx';
+
+const MUSIC_OPTIONS = [
+  ['none', 'None', LuVolumeX], ['piano', 'Piano', LuPiano], ['violin', 'Violin', LuMusic], ['guitar', 'Guitar', LuGuitar], ['rain', 'Rain', LuCloudRain],
+];
+
+function MusicPicker({ tm }) {
+  const { music, setMusic, audioOn, preview, timer } = tm;
+  const focusRunning = timer && timer.status === 'running' && timer.phase === 'focus';
+  return (
+    <section className="music-card" aria-label="Background music">
+      <div className="row between wrap">
+        <h2 className="h4">Background music</h2>
+        <span className="muted xsmall">{focusRunning ? (music.kind === 'none' ? 'Silence' : 'Playing during this focus session') : preview ? 'Preview…' : 'Plays during focus sessions'}</span>
+      </div>
+      <div className="music-opts" role="radiogroup" aria-label="Background music">
+        {MUSIC_OPTIONS.map(([id, label, Icon]) => (
+          <button key={id} type="button" role="radio" aria-checked={music.kind === id} className={`music-opt ${music.kind === id ? 'on' : ''}`}
+                  onClick={() => setMusic({ kind: id })}><Icon aria-hidden /><span>{label}</span></button>
+        ))}
+      </div>
+      {music.kind !== 'none' && (
+        <label className="music-vol"><LuVolume2 aria-hidden /><span className="sr-only">Music volume</span>
+          <input type="range" min="0" max="1" step="0.05" value={music.volume} onChange={(e) => setMusic({ volume: Number(e.target.value) })} /></label>
+      )}
+      {focusRunning && music.kind !== 'none' && !audioOn && (
+        <button type="button" className="btn btn-small btn-primary" onClick={unlockAudio}>Tap to turn the music on</button>
+      )}
+    </section>
+  );
+}
 
 function Ring({ fraction, phase, children }) {
   const R = 118; const C = 2 * Math.PI * R;
@@ -101,6 +132,7 @@ export default function PomodoroPage() {
               <div className="row gap"><button className="btn btn-small btn-primary" onClick={doSkip}>Skip</button>
                 <button className="btn btn-small" onClick={() => setConfirmSkip(false)}>Keep going</button></div></div>
           )}
+          <MusicPicker tm={tm} />
           <p className="muted small center">Concentre-toi aujourd'hui pour la version meilleure de toi demain ♡</p>
         </section>
 
@@ -142,10 +174,10 @@ export default function PomodoroPage() {
             <div className="kv"><span>Focus</span><strong>{tm.settings.focus_minutes} min</strong></div>
             <div className="kv"><span>Short break</span><strong>{tm.settings.short_break_minutes} min</strong></div>
             <div className="kv"><span>Long break</span><strong>{tm.settings.long_break_minutes} min</strong></div>
-            <div className="kv"><span>Sound</span><span>{tm.settings.sound_enabled ? <><LuVolume2 aria-hidden /> On</> : <><LuVolumeX aria-hidden /> Off</>}</span></div>
+            <div className="kv"><span>Bell &amp; alarm at the end</span><span>{tm.settings.sound_enabled ? <><LuBellRing aria-hidden /> On</> : <><LuVolumeX aria-hidden /> Off</>}</span></div>
             <div className="row gap wrap">
               <button className="btn btn-small" onClick={() => navigate('/settings')}><LuSettings aria-hidden /> Change</button>
-              <button className="btn btn-small" onClick={() => { playChime(); toast.info('This is the end-of-session sound.'); }}>Test sound</button>
+              <button className="btn btn-small" onClick={() => { playAlarm(); toast.info('This is the end-of-session bell and alarm.', { action: 'Stop', onAction: stopAlarm }); }}>Test alarm</button>
             </div>
           </section>
         </aside>

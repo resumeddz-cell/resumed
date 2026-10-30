@@ -557,3 +557,16 @@ textarea.lined {
 .m-float { animation: m-float 6s ease-in-out infinite; }
 @keyframes m-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
 @media (prefers-reduced-motion: reduce) { .m-float { animation: none; } }
+
+/* Pomodoro background music */
+.music-card { width: 100%; max-width: 520px; margin: .6rem auto .2rem; padding: .7rem .8rem; border-radius: 18px; background: var(--teal-50); border: 1.5px solid var(--teal-100); display: grid; gap: .5rem; }
+.music-card h2 { margin: 0; }
+.music-opts { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: .4rem; }
+.music-opt { display: grid; justify-items: center; gap: .15rem; padding: .5rem .2rem; border-radius: 14px; border: 1.5px solid var(--teal-100); background: #fff; color: var(--navy); font-weight: 800; font-size: .8rem; cursor: pointer; min-height: 56px; }
+.music-opt svg { font-size: 1.25rem; color: var(--teal-600); }
+.music-opt:hover { border-color: var(--teal-300); }
+.music-opt.on { background: linear-gradient(180deg, var(--teal-400), var(--teal-500)); border-color: var(--teal-500); color: #fff; }
+.music-opt.on svg { color: #fff; }
+.music-vol { display: flex; align-items: center; gap: .5rem; color: var(--teal-700); }
+.music-vol input[type=range] { flex: 1; accent-color: var(--teal-500); min-height: 0; padding: 0; border: 0; box-shadow: none; background: transparent; }
+@media (max-width: 380px) { .music-opt span { font-size: .7rem; } }
