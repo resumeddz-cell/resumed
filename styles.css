@@ -252,6 +252,10 @@ textarea.lined {
 .module-list, .lesson-list { display: grid; gap: .7rem; }
 .icon-circle { width: 64px; height: 64px; border-radius: 50%; background: var(--teal-50); border: 1.5px solid var(--teal-100); display: grid; place-items: center; overflow: hidden; flex: 0 0 auto; }
 .icon-circle img { width: 100%; height: 100%; object-fit: cover; }
+.icon-badge { display: grid; place-items: center; width: 100%; height: 100%; font-family: var(--title); font-weight: 700; font-size: 1.45em; line-height: 1; color: var(--teal-700);
+  background: radial-gradient(circle at 30% 25%, #fff 0 18%, transparent 19%), linear-gradient(145deg, var(--teal-100), var(--teal-300)); }
+.module-row:nth-child(even) .icon-badge { color: var(--pink-600); background: radial-gradient(circle at 30% 25%, #fff 0 18%, transparent 19%), linear-gradient(145deg, var(--pink-100), var(--pink-300)); }
+.icon-circle.sm .icon-badge { font-size: 1.05em; } .icon-circle.xs .icon-badge { font-size: .8em; }
 .icon-circle.sm { width: 44px; height: 44px; } .icon-circle.xs { width: 32px; height: 32px; } .icon-circle.big { width: 84px; height: 84px; }
 .module-row { display: flex; align-items: center; gap: 1rem; text-align: left; cursor: pointer; width: 100%; transition: transform .12s, box-shadow .2s; }
 .module-row:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); }
