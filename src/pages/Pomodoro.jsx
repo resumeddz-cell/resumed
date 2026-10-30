@@ -1,6 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { LuPlay, LuPause, LuRotateCcw, LuSkipForward, LuVolume2, LuVolumeX, LuSettings, LuPiano, LuGuitar, LuCloudRain, LuMusic, LuMusic2, LuBellRing } from 'react-icons/lu';
-import { TRACKS, TRACK_ORDER } from '../lib/tracks.js';
+import { LuPlay, LuPause, LuRotateCcw, LuSkipForward, LuVolume2, LuVolumeX, LuSettings, LuPiano, LuGuitar, LuCloudRain, LuMusic, LuBellRing } from 'react-icons/lu';
 import { stopAlarm, unlockAudio, playAlarm } from '../lib/audio.js';
 import { useTimer, PHASE_LABEL } from '../state/timer.jsx';
 import { useCurriculum } from '../state/data.jsx';
@@ -12,13 +11,13 @@ import { useModuleOptions } from './Planner.jsx';
 import { Loader, ErrorBox, Field } from '../components/ui.jsx';
 import { StudyingMascot } from '../components/Mascot.jsx';
 
-const MUSIC_ICON = { piano: LuPiano, flute: LuMusic2, violin: LuMusic, guitar: LuGuitar, rain: LuCloudRain };
+const MUSIC_OPTIONS = [
+  ['none', 'None', LuVolumeX], ['piano', 'Piano', LuPiano], ['violin', 'Violin', LuMusic], ['guitar', 'Guitar', LuGuitar], ['rain', 'Rain', LuCloudRain],
+];
 
 function MusicPicker({ tm }) {
-  const { music, setMusic, audioOn, preview, timer, musicActive, ytFailed } = tm;
+  const { music, setMusic, audioOn, preview, timer } = tm;
   const focusRunning = timer && timer.status === 'running' && timer.phase === 'focus';
-  const track = TRACKS[music.kind] || TRACKS.none;
-  const yt = !!(track.yt && !ytFailed[music.kind]);
   return (
     <section className="music-card" aria-label="Background music">
       <div className="row between wrap">
@@ -26,21 +25,16 @@ function MusicPicker({ tm }) {
         <span className="muted xsmall">{focusRunning ? (music.kind === 'none' ? 'Silence' : 'Playing during this focus session') : preview ? 'Preview…' : 'Plays during focus sessions'}</span>
       </div>
       <div className="music-opts" role="radiogroup" aria-label="Background music">
-        {TRACK_ORDER.map((id) => {
-          const t = TRACKS[id]; const Icon = MUSIC_ICON[t.icon] || LuVolumeX;
-          return (
-            <button key={id} type="button" role="radio" aria-checked={music.kind === id} className={`music-opt ${music.kind === id ? 'on' : ''}`}
-                    onClick={() => setMusic({ kind: id })}><Icon aria-hidden /><span>{t.label}</span></button>
-          );
-        })}
+        {MUSIC_OPTIONS.map(([id, label, Icon]) => (
+          <button key={id} type="button" role="radio" aria-checked={music.kind === id} className={`music-opt ${music.kind === id ? 'on' : ''}`}
+                  onClick={() => setMusic({ kind: id })}><Icon aria-hidden /><span>{label}</span></button>
+        ))}
       </div>
       {music.kind !== 'none' && (
         <label className="music-vol"><LuVolume2 aria-hidden /><span className="sr-only">Music volume</span>
           <input type="range" min="0" max="1" step="0.05" value={music.volume} onChange={(e) => setMusic({ volume: Number(e.target.value) })} /></label>
       )}
-      {musicActive && yt && <div id="music-slot" className="music-slot" />}
-      {track.yt && ytFailed[music.kind] && <p className="muted xsmall">This YouTube video cannot be played inside the app — a similar melody is played instead.</p>}
-      {focusRunning && music.kind !== 'none' && !yt && !audioOn && (
+      {focusRunning && music.kind !== 'none' && !audioOn && (
         <button type="button" className="btn btn-small btn-primary" onClick={unlockAudio}>Tap to turn the music on</button>
       )}
     </section>
