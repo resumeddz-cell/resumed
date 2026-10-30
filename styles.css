@@ -131,16 +131,68 @@ textarea.lined {
 @media (prefers-reduced-motion: reduce) { .pbar-fill, .btn, .loader-tomato { transition: none; animation: none; } }
 
 /* ---------- auth ---------- */
-.auth-shell { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; background: linear-gradient(160deg, #6cdcdc, #3fc8cd 55%, #33bcc4); }
-.auth-art { display: flex; align-items: center; justify-content: center; overflow: hidden; padding: 2rem; }
-.mascot-still.auth-mascot { width: min(520px, 40vw, calc(84vh * 0.81)); filter: drop-shadow(0 22px 40px rgba(0, 60, 70, .28)); }
-.mascot-still.auth-mascot-mobile { display: none; }
-.auth-panel { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 2rem 1.2rem calc(2rem + var(--safe-b)); gap: 1rem; }
-.auth-logo { width: min(340px, 80%); border-radius: 24px; }
-.auth-card { width: min(420px, 100%); border: 0; }
-.auth-title { font-family: var(--title); font-size: 1.8rem; text-align: center; }
-.auth-links { display: flex; justify-content: space-between; flex-wrap: wrap; gap: .5rem; margin-top: 1rem; font-size: .92rem; }
-.auth-foot { color: #fff; font-family: var(--hand); font-size: 1.3rem; }
+/* ---- login / sign-up: poster from the PDF (page 1) with the real form where the drawn one was.
+   1u = 1% of the poster width (set from JS); coordinates below are measured on the 1624×2293 artwork. */
+.auth-shell {
+  --u: 1vw; min-height: 100vh; min-height: 100dvh; display: flex; justify-content: center; align-items: flex-start; overflow-x: hidden;
+  background: linear-gradient(90deg, #6cdbd9 0, rgba(108, 219, 217, 0) 24%, rgba(108, 219, 217, 0) 76%, #6cdbd9 100%),
+    url(assets/art/login_edge_left.png) left top / 50.5% 100% no-repeat, url(assets/art/login_edge_right.png) right top / 50.5% 100% no-repeat, #6fdcda;
+}
+.auth-poster { position: relative; flex: none; width: min(100vw, calc(100vh * 0.70824)); width: min(100vw, calc(100dvh * 0.70824)); height: calc(var(--u) * 141.2); }
+.auth-bg { position: absolute; inset: 0 0 auto 0; width: 100%; height: calc(var(--u) * 141.2); max-width: none; display: block; user-select: none; -webkit-user-drag: none;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 2.5%, #000 95.5%, transparent 100%); mask-image: linear-gradient(90deg, transparent 0, #000 2.5%, #000 95.5%, transparent 100%); }
+.auth-better { position: absolute; left: calc(var(--u) * 79.3); top: calc(var(--u) * 104.1); width: calc(var(--u) * 17.36); pointer-events: none; }
+.auth-poster.is-tall .auth-better { display: none; }
+.auth-zone { position: absolute; left: calc(var(--u) * 51.6); top: calc(var(--u) * 62.9); width: calc(var(--u) * 45.1); display: flex; flex-direction: column; align-items: stretch; color: #14324a; }
+.lp-head { display: flex; align-items: center; justify-content: center; min-height: max(30px, calc(var(--u) * 7)); }
+.lp-spark { flex: none; width: max(12px, calc(var(--u) * 3.2)); height: auto; }
+.lp-spark-l { margin: calc(var(--u) * 2.6) calc(var(--u) * 2.4) 0 0; }
+.lp-spark-r { margin: calc(var(--u) * -1.8) 0 0 calc(var(--u) * 1.6); }
+.lp-title { margin: 0; font-family: 'Kalam', var(--title); font-weight: 700; color: #14244a; line-height: 1.05; text-align: center;
+  font-size: max(20px, calc(var(--u) * var(--fs, 3.9))); transform: rotate(-3deg); padding-top: calc(var(--u) * 1.2); }
+.lp-arrow { display: block; width: max(14px, calc(var(--u) * 3.3)); margin: calc(var(--u) * -0.4) auto calc(var(--u) * 1.2); transform: translateX(calc(var(--u) * 3.4)); }
+.lp-form { display: flex; flex-direction: column; gap: max(10px, calc(var(--u) * 3.1)); margin: 0; }
+.lp-input { display: flex; align-items: center; gap: calc(var(--u) * 2.4); height: max(46px, calc(var(--u) * 8.6)); padding: 0 calc(var(--u) * 3) 0 calc(var(--u) * 3.6);
+  background: linear-gradient(180deg, #ffffff, #f1f5fb); border-radius: 999px; cursor: text;
+  box-shadow: 0 calc(var(--u) * 0.8) calc(var(--u) * 2.4) rgba(16, 120, 130, .20), 0 0 0 1px rgba(255, 255, 255, .7) inset; transition: box-shadow .15s; }
+.lp-input:focus-within { box-shadow: 0 calc(var(--u) * 0.8) calc(var(--u) * 2.4) rgba(16, 120, 130, .22), 0 0 0 3px rgba(255, 255, 255, .95), 0 0 0 6px rgba(38, 194, 200, .35); }
+.lp-input > svg { flex: none; width: max(20px, calc(var(--u) * 4.3)); height: max(20px, calc(var(--u) * 4.3)); color: #26c2c8; stroke-width: 1.7; }
+.auth-shell .lp-input > input { flex: 1; min-width: 0; height: 100%; min-height: 0; border: 0; padding: 0; margin: 0; background: transparent; box-shadow: none; border-radius: 0;
+  font-family: var(--font); font-size: max(16px, calc(var(--u) * 2.6)); color: #1c2a6e; text-overflow: ellipsis; }
+.auth-shell .lp-input > input:focus { box-shadow: none; outline: none; }
+.lp-input > input::placeholder { color: #7f80ad; opacity: 1; }
+.lp-btn { display: flex; align-items: center; justify-content: center; gap: .45em; width: 100%; height: max(48px, calc(var(--u) * 9.5)); border: 0; border-radius: 999px; cursor: pointer;
+  background: linear-gradient(180deg, #8ef4f5 0%, #5beaf0 48%, #40e1ea 100%); color: #10374a; text-decoration: none;
+  font-family: 'Kalam', var(--title); font-weight: 700; font-size: max(19px, calc(var(--u) * 3.7)); line-height: 1;
+  box-shadow: 0 calc(var(--u) * 1.2) calc(var(--u) * 2.6) rgba(12, 140, 152, .35), inset 0 2px 0 rgba(255, 255, 255, .6), inset 0 -3px 0 rgba(16, 168, 182, .28);
+  transition: transform .12s, filter .12s; }
+.lp-btn:hover { filter: brightness(1.04); } .lp-btn:active { transform: translateY(1px); }
+.lp-btn:disabled { cursor: progress; filter: saturate(.7); }
+.lp-btn svg { width: .8em; height: .8em; stroke-width: 2.6; }
+.lp-btn:focus-visible, .lp-link:focus-visible, .lp-links a:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
+.lp-msg { margin: 0; padding: .45em .9em; border-radius: 14px; background: rgba(255, 255, 255, .9); font-size: max(13px, calc(var(--u) * 1.9)); font-weight: 700; line-height: 1.35; }
+.lp-msg-error { color: #c02a52; } .lp-msg-ok { color: #0f7a5f; }
+.auth-zone > .lp-msg { margin-top: calc(var(--u) * 1.6); }
+.lp-who { display: flex; align-items: baseline; justify-content: center; gap: .5em; margin: calc(var(--u) * -1.4) 0 0; font-size: max(13px, calc(var(--u) * 1.9)); font-weight: 700; min-width: 0; }
+.lp-who span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.lp-link { background: none; border: 0; padding: 0; cursor: pointer; font: inherit; color: #1c2a6e; text-decoration: underline; text-underline-offset: 2px; }
+.lp-links { display: flex; flex-direction: column; align-items: center; gap: .25em; margin-top: max(10px, calc(var(--u) * 2.2)); font-size: max(13px, calc(var(--u) * 1.9)); font-weight: 700; text-align: center; }
+.lp-links a { color: #1c2a6e; text-decoration: underline; text-underline-offset: 2px; }
+.lp-text { margin: 0 0 max(8px, calc(var(--u) * 1.6)); text-align: center; font-weight: 700; font-size: max(15px, calc(var(--u) * 2.3)); line-height: 1.4; }
+.lp-small { font-weight: 600; font-size: max(13px, calc(var(--u) * 1.8)); }
+.lp-demo { margin-top: max(10px, calc(var(--u) * 2)); padding: .6em .8em; border-radius: 16px; background: rgba(255, 255, 255, .88); font-size: 13px; text-align: center; display: grid; gap: .4em; }
+.lp-demo p { margin: 0; }
+/* portrait phones / tablets: poster spans the width, the page continues below it in the artwork's floor colour */
+@media (max-aspect-ratio: 1624/2293) {
+  .auth-shell { background: #78e2df; }
+  .auth-poster { width: 100vw; height: auto; min-height: 100vh; min-height: 100dvh; padding: calc(var(--u) * 133) 0 calc(24px + var(--safe-b));
+    background: url(assets/art/login_edge_bottom.png) left bottom / 100% 100% no-repeat; }
+  .auth-bg { top: calc(var(--u) * -8); -webkit-mask-image: none; mask-image: none; }
+  .auth-zone { position: relative; left: auto; top: auto; width: auto; margin: 0 auto; max-width: 440px; padding: 0 20px; }
+  .lp-title { font-size: max(24px, calc(var(--u) * 6.4)); }
+  .lp-spark { width: max(14px, calc(var(--u) * 3.6)); }
+  .auth-better, .auth-poster.is-tall .auth-better { display: block; left: calc(var(--u) * 63); top: calc(var(--u) * 64); width: calc(var(--u) * 25); }
+}
 .status-page { min-height: 100vh; display: grid; place-items: center; padding: 1.2rem; gap: 1rem; }
 .status-card { max-width: 520px; text-align: center; padding: 2rem 1.4rem; }
 .status-card h1 { font-family: var(--title); font-size: 1.7rem; }
@@ -451,9 +503,6 @@ textarea.lined {
   .bottom-nav button { display: grid; justify-items: center; gap: .1rem; border: 0; background: none; font-size: .72rem; font-weight: 800; color: var(--muted); padding: .35rem 0; border-radius: 14px; cursor: pointer; min-height: 52px; }
   .bottom-nav svg { font-size: 1.35rem; color: var(--teal-600); }
   .bottom-nav button.active { background: var(--teal-100); color: var(--navy); }
-  .auth-shell { grid-template-columns: 1fr; }
-  .auth-art { display: none; }
-  .mascot-still.auth-mascot-mobile { display: block; width: min(300px, 72vw); margin-bottom: -2.2rem; z-index: 1; filter: drop-shadow(0 14px 24px rgba(0, 60, 70, .25)); }
   .pomo-grid, .dash-grid, .notes-grid { grid-template-columns: 1fr; }
   .week-grid { grid-template-columns: repeat(2, 1fr); }
   .notes-page.has-current .notes-list { display: none; }
@@ -498,8 +547,6 @@ textarea.lined {
 .demo-banner { position: sticky; top: 0; z-index: 60; display: flex; flex-wrap: wrap; gap: .4rem 1rem; align-items: center; justify-content: center;
   padding: .4rem 1rem; background: var(--lilac-100); color: var(--lilac-600); font-weight: 800; font-size: .85rem; text-align: center; }
 .demo-banner .btn { min-height: 30px; }
-.demo-login { background: var(--teal-50); border: 1.5px dashed var(--teal-300); border-radius: 16px; padding: .7rem .8rem; margin-bottom: .8rem; display: grid; gap: .4rem; }
-.demo-login p { margin: 0; }
 
 /* ---------- mascot ---------- */
 .mascot-still { display: block; max-width: 100%; height: auto; }
