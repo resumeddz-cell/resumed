@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import {
   LuHouse, LuCalendarDays, LuBookOpen, LuNotebookPen, LuChartColumn, LuTimer, LuHistory, LuSettings,
-  LuShieldCheck, LuMenu, LuX, LuLogOut, LuWifiOff,
+  LuShieldCheck, LuMenu, LuX, LuLogOut, LuWifiOff, LuStethoscope,
 } from 'react-icons/lu';
 import { navigate } from '../lib/router.js';
 import { useAuth } from '../state/auth.jsx';
@@ -48,7 +48,10 @@ export default function Layout({ path, children }) {
   const { profile, isAdmin, signOut } = useAuth();
   const [open, setOpen] = useState(false);
   const online = useOnline();
-  const items = isAdmin ? [...NAV, { to: '/admin', label: 'admin', icon: LuShieldCheck, match: (p) => p.startsWith('/admin') }] : NAV;
+  // the carnet de stage appears from the 3rd year (clinical placements), right after Notes
+  const base = profile && profile.selected_year >= 3
+    ? NAV.flatMap((n) => (n.to === '/notes' ? [n, { to: '/stages', label: 'stages', icon: LuStethoscope, match: (p) => p.startsWith('/stages') }] : [n])) : NAV;
+  const items = isAdmin ? [...base, { to: '/admin', label: 'admin', icon: LuShieldCheck, match: (p) => p.startsWith('/admin') }] : base;
   const go = (to) => { setOpen(false); navigate(to); };
   const name = (profile && (profile.display_name || profile.email.split('@')[0])) || '';
 

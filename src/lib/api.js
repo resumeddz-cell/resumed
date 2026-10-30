@@ -76,6 +76,23 @@ export const notesApi = {
   async remove(id) { await db.remove('notes', [['id', 'eq', id], ['user_id', 'eq', uid()]]); },
 };
 
+// ------------------------------------------------------------- carnet de stage (Year 3+)
+export const STAGE_FIELDS = ['entry_date', 'stage_name', 'topic', 'learned', 'weaknesses', 'strengths'];
+export const stageApi = {
+  list: async () => db.select('stage_entries', { filters: [['user_id', 'eq', uid()]], order: ['entry_date.desc', 'created_at.desc'] }),
+  async create(fields = {}) { return one(await db.insert('stage_entries', [{ user_id: uid(), ...fields }])); },
+  // Optimistic concurrency, like notes: only updates if nobody saved a newer version meanwhile.
+  async update(id, version, patch) {
+    const row = one(await db.update('stage_entries', patch, [['id', 'eq', id], ['version', 'eq', version], ['user_id', 'eq', uid()]]));
+    if (!row) {
+      const latest = one(await db.select('stage_entries', { filters: [['id', 'eq', id]] }));
+      throw new ApiError(latest ? 'version_conflict' : 'This entry was deleted on another device.', { code: latest ? 'version_conflict' : 'gone', details: latest });
+    }
+    return row;
+  },
+  async remove(id) { await db.remove('stage_entries', [['id', 'eq', id], ['user_id', 'eq', uid()]]); },
+};
+
 // ------------------------------------------------------------- pomodoro
 export const DEFAULT_POMODORO = { focus_minutes: 25, short_break_minutes: 5, long_break_minutes: 15, sessions_before_long_break: 4, sound_enabled: true };
 export const pomodoroApi = {

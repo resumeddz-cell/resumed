@@ -702,6 +702,46 @@ async function noHorizontalScroll(page) {
     await X.ctx.close();
   });
 
+  await step('Carnet de stage (Year 3): add a day, autosave, survives reload, other students cannot see it', async () => {
+    const X = await newUser(browser, undefined, 'stages');
+    await login(X.page, ALICE); await X.page.locator('.dash-hero').waitFor();
+    await X.page.goto(`${BASE}/#/year/3`);
+    await X.page.getByRole('button', { name: /view plan/i }).first().click();
+    await X.page.locator('.dash-hero', { hasText: '3ème année' }).waitFor();
+    await X.page.locator('.sidebar').getByRole('button', { name: 'Carnet de stage' }).click();
+    await X.page.getByRole('button', { name: 'New day' }).click();
+    await X.page.locator('.stage-editor').waitFor();
+    await X.page.getByLabel(/Stage \(service/).fill('Cardiologie — CHU');
+    await X.page.getByLabel(/Sujet du jour/).fill('Examen cardiaque');
+    await X.page.getByLabel(/Ce que j'ai appris/).fill('Auscultation des 4 foyers');
+    await X.page.getByLabel(/Mes points faibles/).fill('Reconnaître les souffles');
+    await X.page.getByLabel(/Mes points forts/).fill('Interrogatoire');
+    await X.page.keyboard.press('Tab');
+    const want = 'Cardiologie — CHU|Examen cardiaque|Auscultation des 4 foyers|Reconnaître les souffles|Interrogatoire';
+    let row = '';
+    for (let i = 0; i < 40 && row !== want; i++) {
+      row = (await sql(`select stage_name || '|' || topic || '|' || learned || '|' || weaknesses || '|' || strengths from stage_entries`)).trim();
+      if (row !== want) await X.page.waitForTimeout(250);
+    }
+    expect(row === want, `saved: ${row}`);
+    await X.page.locator('.save-status', { hasText: /saved/i }).waitFor({ timeout: 10000 });
+    await X.page.reload(); await X.page.locator('.stage-editor').waitFor();
+    expect((await X.page.getByLabel(/Mes points forts/).inputValue()) === 'Interrogatoire', 'entry not restored after reload');
+    await X.page.screenshot({ path: `${SHOTS}/42-carnet-de-stage.png`, fullPage: true });
+    // the next day pre-fills the same stage
+    await X.page.getByRole('button', { name: 'New day' }).click(); await settled(X.page);
+    expect((await X.page.getByLabel(/Stage \(service/).inputValue()) === 'Cardiologie — CHU', 'stage name not pre-filled');
+    // another student sees nothing
+    const B = await newUser(browser, undefined, 'stages-bob');
+    await login(B.page, BOB); await B.page.goto(`${BASE}/#/stages`); await settled(B.page);
+    expect((await B.page.locator('.note-item').count()) === 0, 'Bob sees Alice\'s carnet de stage');
+    await B.ctx.close();
+    await X.page.goto(`${BASE}/#/year/1`);
+    await X.page.getByRole('button', { name: /view plan/i }).nth(1).click();
+    await X.page.locator('.dash-hero', { hasText: '1ère année de médecine' }).waitFor();
+    await X.ctx.close();
+  });
+
   await step('No unexpected JavaScript errors in the browser console', async () => {
     expect(consoleErrors.length === 0, consoleErrors.slice(0, 5).join(' | '));
   });

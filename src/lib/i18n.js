@@ -21,7 +21,7 @@ const en = {
   sessionExpired: 'Your session has expired. Please sign in again.',
   // nav
   home: 'Home', courses: 'Courses', planner: 'Planner', pomodoro: 'Pomodoro', tracker: 'Study Tracker',
-  notes: 'Notes', progress: 'Progress', settings: 'Settings', admin: 'Admin', menu: 'Menu',
+  notes: 'Notes', stages: 'Carnet de stage', progress: 'Progress', settings: 'Settings', admin: 'Admin', menu: 'Menu',
   // stages
   learned: 'Learned', revised1: 'Revised 1', revised2: 'Revised 2', qcm: 'QCM',
   // misc

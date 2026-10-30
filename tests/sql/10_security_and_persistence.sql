@@ -200,8 +200,21 @@ do $$ declare n int; begin
   update public.notes set content = 'stale' where title = 'Cycle de Krebs' and version = 1; get diagnostics n = row_count;
   perform pg_temp.ok(n = 0, 'Stale note update (old version) changes nothing'); end $$;
 
+-- carnet de stage: daily entries with optimistic versioning
+insert into public.stage_entries (user_id, entry_date, stage_name, topic, learned, weaknesses, strengths)
+  values (auth.uid(), date '2026-10-28', 'Cardiologie — CHU', 'Examen cardiaque', 'Auscultation des 4 foyers', 'Souffles', 'Interrogatoire');
+update public.stage_entries set learned = learned || ' + ECG' where user_id = auth.uid() and version = 1;
+select pg_temp.ok((select version = 2 and learned like '%ECG' from public.stage_entries where topic = 'Examen cardiaque'), 'Stage entry version increments on edit');
+do $$ declare n int; begin
+  update public.stage_entries set learned = 'stale' where topic = 'Examen cardiaque' and version = 1; get diagnostics n = row_count;
+  perform pg_temp.ok(n = 0, 'Stale stage-entry update (old version) changes nothing'); end $$;
+
 -- ---------------------------------------------------------------- 4. cross-user isolation
 select pg_temp.act_as('bob@test.local');
+select pg_temp.ok((select count(*) = 0 from public.stage_entries), 'T4 Bob cannot read Alice''s carnet de stage');
+do $$ declare n int; begin
+  update public.stage_entries set strengths = 'pwned'; get diagnostics n = row_count;
+  perform pg_temp.ok(n = 0, 'T4 Bob cannot modify Alice''s carnet de stage'); end $$;
 select pg_temp.ok((select count(*) = 0 from public.lesson_progress), 'T4 Bob cannot read Alice''s progress');
 select pg_temp.ok((select count(*) = 0 from public.planner_tasks), 'T4 Bob cannot read Alice''s tasks');
 select pg_temp.ok((select count(*) = 0 from public.weekly_notes), 'T4 Bob cannot read Alice''s weekly notes');

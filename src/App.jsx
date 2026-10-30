@@ -18,6 +18,7 @@ import TrackerPage from './pages/Tracker.jsx';
 import NotesPage from './pages/Notes.jsx';
 import ProgressPage from './pages/Progress.jsx';
 import SettingsPage from './pages/Settings.jsx';
+import StageJournalPage from './pages/StageJournal.jsx';
 import AdminAccounts from './pages/admin/AdminAccounts.jsx';
 import AdminCurriculum from './pages/admin/AdminCurriculum.jsx';
 
@@ -45,6 +46,8 @@ function ApprovedApp({ route }) {
   else if (path === '/tracker') page = <TrackerPage />;
   else if (path === '/notes') page = <NotesPage />;
   else if ((m = match('/notes/:id', path))) page = <NotesPage id={m.id} />;
+  else if (path === '/stages') page = <StageJournalPage />;
+  else if ((m = match('/stages/:id', path))) page = <StageJournalPage id={m.id} />;
   else if (path === '/progress') page = <ProgressPage />;
   else if (path === '/settings') page = <SettingsPage />;
   else if (path === '/admin' || path === '/admin/curriculum') {

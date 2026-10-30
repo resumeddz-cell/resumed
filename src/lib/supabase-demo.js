@@ -44,11 +44,12 @@ function freshDb() {
     users, profiles,
     modules: seed.modules.map((m) => ({ ...m, created_at: t, updated_at: t })),
     lessons: seed.lessons.map((l) => ({ ...l, created_at: t, updated_at: t })),
-    lesson_progress: [], planner_tasks: [], weekly_notes: [], notes: [], pomodoro_settings: [],
+    lesson_progress: [], planner_tasks: [], weekly_notes: [], notes: [], stage_entries: [], pomodoro_settings: [],
     user_preferences: [], study_sessions: [], timer_state: [], admin_audit_log: [],
   };
 }
 let DB = readKey(DB_KEY) || freshDb();
+if (!DB.stage_entries) DB.stage_entries = [];      // demo data saved before the carnet de stage existed
 const persist = () => writeKey(DB_KEY, DB);
 persist();
 export function resetDemo() { writeKey(DB_KEY, null); writeKey(SESSION_KEY, null); }
@@ -105,7 +106,7 @@ function uidOrThrow() { const id = currentUid(); if (!id) throw new ApiError('No
 const me = () => DB.profiles.find((p) => p.id === currentUid());
 const isApproved = () => { const p = me(); return !!p && p.status === 'approved'; };
 const isAdmin = () => { const p = me(); return !!p && p.role === 'admin' && p.status === 'approved'; };
-const PERSONAL = ['lesson_progress', 'planner_tasks', 'weekly_notes', 'notes', 'pomodoro_settings', 'user_preferences', 'study_sessions', 'timer_state'];
+const PERSONAL = ['lesson_progress', 'planner_tasks', 'weekly_notes', 'notes', 'stage_entries', 'pomodoro_settings', 'user_preferences', 'study_sessions', 'timer_state'];
 
 function canSee(table, row) {
   const id = currentUid();
@@ -159,6 +160,7 @@ function project(row, columns) {
 const DEFAULTS = {
   planner_tasks: () => ({ id: uuid(), description: null, start_time: null, end_time: null, priority: 'medium', category: 'other', status: 'todo', completed_at: null, notes: null, module_id: null, lesson_id: null }),
   notes: () => ({ id: uuid(), title: '', content: '', version: 1 }),
+  stage_entries: () => ({ id: uuid(), entry_date: new Date().toISOString().slice(0, 10), stage_name: '', topic: '', learned: '', weaknesses: '', strengths: '', version: 1 }),
   pomodoro_settings: () => ({ focus_minutes: 25, short_break_minutes: 5, long_break_minutes: 15, sessions_before_long_break: 4, sound_enabled: true }),
   user_preferences: () => ({ language: 'en', data: {} }),
   modules: () => ({ id: uuid(), year: 1, semester: null, parent_id: null, description: null, icon: null, hero: null, source_page: null, position: 0, active: true }),
@@ -172,6 +174,11 @@ function triggers(table, row, old) {
     if (row.end_time && row.end_time.length === 5) row.end_time += ':00';
     if (row.start_time && row.end_time && row.end_time <= row.start_time) throw new ApiError('Some values are not valid.', { code: '23514' });
     if (!row.title || !String(row.title).trim()) throw new ApiError('Some values are not valid.', { code: '23514' });
+  }
+  if (table === 'stage_entries' && old) {
+    const f = ['entry_date', 'stage_name', 'topic', 'learned', 'weaknesses', 'strengths'];
+    if (f.some((k) => row[k] !== old[k])) { row.version = old.version + 1; row.updated_at = t; } else { row.updated_at = old.updated_at; }
+    return;
   }
   if (table === 'notes' && old) {
     if (row.title !== old.title || row.content !== old.content) { row.version = old.version + 1; row.updated_at = t; } else { row.updated_at = old.updated_at; }

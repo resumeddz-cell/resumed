@@ -13,5 +13,7 @@ $P -d resumed_dbtest -f "$DIR/supabase/migrations/003_year2.sql" >/dev/null
 $P -d resumed_dbtest -f "$DIR/supabase/migrations/003_year2.sql" >/dev/null                    # idempotency
 $P -d resumed_dbtest -f "$DIR/supabase/migrations/004_year3.sql" >/dev/null
 $P -d resumed_dbtest -f "$DIR/supabase/migrations/004_year3.sql" >/dev/null                    # idempotency
+$P -d resumed_dbtest -f "$DIR/supabase/migrations/005_stage_journal.sql" >/dev/null
+$P -d resumed_dbtest -f "$DIR/supabase/migrations/005_stage_journal.sql" >/dev/null          # idempotency
 $P -d resumed_dbtest -f "$DIR/tests/sql/10_security_and_persistence.sql" 2>&1 | sed 's/^psql:[^ ]* //' | grep -E "PASS|FAIL|ERROR|ALL"
 $P -d resumed_dbtest -f "$DIR/tests/sql/20_timer.sql" 2>&1 | sed 's/^psql:[^ ]* //' | grep -E "PASS|FAIL|ERROR|ALL"
