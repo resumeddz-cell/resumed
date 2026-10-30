@@ -1,3 +1,4 @@
+import { sectionInfo } from '../lib/years.js';
 import React, { useEffect, useState } from 'react';
 import { LuLogOut, LuSave, LuGraduationCap } from 'react-icons/lu';
 import { useAuth } from '../state/auth.jsx';
@@ -91,7 +92,7 @@ export default function SettingsPage() {
             <div><dt>Role</dt><dd>{profile.role === 'admin' ? 'Administrator' : 'Student'}</dd></div>
             <div><dt>Status</dt><dd><span className={`badge ${profile.status}`}>{profile.status}</span></dd></div>
             <div><dt>Member since</dt><dd>{fmtDateTime(profile.created_at)}</dd></div>
-            <div><dt>Academic year</dt><dd>{profile.selected_year ? `Year ${profile.selected_year}${profile.selected_semester ? ` · ${profile.selected_semester}` : ''}` : '—'}</dd></div>
+            <div><dt>Academic year</dt><dd>{profile.selected_year ? `Year ${profile.selected_year}${profile.selected_semester ? ` · ${sectionInfo(profile.selected_semester).short}` : ''}` : '—'}</dd></div>
           </dl>
           <h3 className="h4 mt">Change password</h3>
           <form onSubmit={savePw} className="form-grid">

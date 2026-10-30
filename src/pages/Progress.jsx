@@ -7,9 +7,12 @@ import { navigate } from '../lib/router.js';
 import { Loader, ErrorBox, PageHeader, Stat, ProgressBar, Empty, Img } from '../components/ui.jsx';
 import { BarChart, LineChart, SplitBar } from '../components/Charts.jsx';
 import { t } from '../lib/i18n.js';
+import { sectionsOf } from '../lib/years.js';
+import { useAuth } from '../state/auth.jsx';
 
 export default function ProgressPage() {
   const cur = useCurriculum();
+  const { profile } = useAuth();
   const [data, setData] = useState(null);
   const [err, setErr] = useState(null);
   const [view, setView] = useState('daily');
@@ -30,7 +33,8 @@ export default function ProgressPage() {
   const completed = sessions.filter((s) => s.status === 'completed');
   const totalSec = sessions.reduce((n, s) => n + s.active_seconds, 0);
   const done = tasks.filter((x) => x.status === 'done').length;
-  const roots = cur.tree.roots.filter((m) => m.active !== false);
+  const year = profile.selected_year || 1;
+  const roots = cur.tree.roots.filter((m) => m.active !== false && m.year === year);
   const overall = stats(roots.flatMap(allLessons), cur.pmap);
   const hasActivity = sessions.length > 0 || tasks.length > 0 || cur.rows.some((r) => r.learned || r.revised1 || r.revised2 || r.qcm);
 
@@ -74,7 +78,7 @@ export default function ProgressPage() {
             <Stat label="Completed focus sessions" value={completed.length} sub={`${sessions.length - completed.length} interrupted`} />
             <Stat tone="lilac" label="Total recorded study time" value={fmtDuration(totalSec)} />
             <Stat tone="pink" label="Tasks completed" value={`${done} / ${tasks.length}`} sub={`${tasks.length - done} incomplete`} />
-            <Stat tone="blue" label="Overall lesson completion" value={fmtPct(overall.pct)} sub={`${overall.learned} / ${overall.total} lessons (S1 + S2)`} />
+            <Stat tone="blue" label="Overall lesson completion" value={fmtPct(overall.pct)} sub={`${overall.learned} / ${overall.total} lessons (${sectionsOf(year).map((x) => x.short).join(' + ')})`} />
           </div>
 
           <section className="card">
@@ -116,9 +120,9 @@ export default function ProgressPage() {
             </div>
           </section>
 
-          {['S1', 'S2'].map((sem) => (
+          {sectionsOf(year).map(({ id: sem, short }) => (
             <section key={sem} className="card">
-              <h2 className="h3">Module completion — {sem}</h2>
+              <h2 className="h3">Module completion — {short}</h2>
               <div className="module-bars">
                 {roots.filter((r) => r.semester === sem).map((m) => {
                   const s = moduleStats(m, cur.pmap);

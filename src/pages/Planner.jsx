@@ -2,6 +2,8 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { LuChevronLeft, LuChevronRight, LuPlus, LuCalendarCheck, LuTrash2, LuCheck, LuTriangleAlert } from 'react-icons/lu';
 import { plannerApi, currentUserId, errorMessage } from '../lib/api.js';
 import { mondayOf, addDays, toISODate, parseISODate, today, DAY_NAMES, fmtDate, minutesBetween, fmtDuration } from '../lib/dates.js';
+import { useAuth } from '../state/auth.jsx';
+import { sectionInfo } from '../lib/years.js';
 import { useCurriculum } from '../state/data.jsx';
 import { useToast } from '../state/toast.jsx';
 import { navigate } from '../lib/router.js';
@@ -27,21 +29,23 @@ const DAY_TONES = ['teal', 'pink', 'teal', 'pink', 'teal', 'pink', 'teal'];
 
 export function useModuleOptions() {
   const { ready, tree } = useCurriculum();
+  const { profile } = useAuth();
+  const year = profile.selected_year || 1;
   return useMemo(() => {
     if (!ready) return { modules: [], lessonsFor: () => [] };
     const out = [];
     const walk = (n, prefix) => {
       if (n.active === false) return;
-      const label = prefix ? `${prefix} › ${n.title}` : `${n.semester || ''} · ${n.title}`;
+      const label = prefix ? `${prefix} › ${n.title}` : `${sectionInfo(n.semester).short} · ${n.title}`;
       out.push({ id: n.id, label }); n.children.forEach((c) => walk(c, label));
     };
-    tree.roots.forEach((r) => walk(r, ''));
+    tree.roots.filter((r) => r.year === year).forEach((r) => walk(r, ''));
     const lessonsFor = (id) => {
       const n = id && tree.nodes.get(id); if (!n) return [];
       return allLessons(n).map((l) => ({ id: l.id, label: `${l.number ? `${l.number}. ` : ''}${l.title}`, module_id: l.module_id }));
     };
     return { modules: out, lessonsFor, lessonModule: (lid) => { const l = lid && (tree && [...tree.nodes.values()].flatMap((n) => n.lessons).find((x) => x.id === lid)); return l ? l.module_id : null; } };
-  }, [ready, tree]);
+  }, [ready, tree, year]);
 }
 
 function TaskModal({ task, onClose, onSaved, onDeleted }) {

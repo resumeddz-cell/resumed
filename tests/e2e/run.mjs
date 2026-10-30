@@ -190,7 +190,7 @@ async function noHorizontalScroll(page) {
 
   // ------------------------------------------------------------------ year selection
   await step('Year selection: Year 1 card -> semester S2 is saved and restored', async () => {
-    await A.page.getByRole('button', { name: 'Enter' }).click();
+    await A.page.getByRole('button', { name: 'Enter' }).first().click();
     await A.page.screenshot({ path: `${SHOTS}/04-semester.png` });
     await A.page.getByRole('button', { name: /view plan/i }).nth(1).click();
     await A.page.locator('.dash-hero').waitFor();
@@ -280,7 +280,7 @@ async function noHorizontalScroll(page) {
     await ADM.page.locator('tr', { hasText: CAROL.email }).getByRole('button', { name: 'Approve' }).click();
     await ADM.page.locator('tr', { hasText: CAROL.email }).locator('.badge.approved').waitFor();
     await C.page.getByRole('button', { name: /check again/i }).click();
-    await C.page.getByRole('button', { name: 'Enter' }).click();
+    await C.page.getByRole('button', { name: 'Enter' }).first().click();
     await C.page.getByRole('button', { name: /view plan/i }).first().click();
     await C.page.locator('.dash-hero').waitFor();
     const aliceId = await sql(`select id from profiles where email = '${ALICE.email}'`);
@@ -481,7 +481,7 @@ async function noHorizontalScroll(page) {
     await A.page.goto(`${BASE}/#/progress`);
     await A.page.locator('.stat', { hasText: 'Overall lesson completion' }).waitFor();
     const overall = (await A.page.locator('.stat', { hasText: 'Overall lesson completion' }).locator('.stat-sub').textContent()).trim();
-    const total = await sql(`select count(*) from lessons where active`);
+    const total = await sql(`select count(*) from lessons l join modules m on m.id = l.module_id where l.active and m.year = 1`);
     expect(overall === `4 / ${total} lessons (S1 + S2)`, `progress: ${overall}`);
     await A.page.getByRole('tab', { name: 'Weekly' }).click();
     await A.page.screenshot({ path: `${SHOTS}/16-progress.png`, fullPage: true });
@@ -641,6 +641,39 @@ async function noHorizontalScroll(page) {
     await X.page.getByRole('button', { name: 'Menu', exact: true }).click();
     await X.page.locator('.sidebar.open').getByRole('button', { name: 'Study Tracker' }).click();
     await X.page.getByRole('heading', { name: 'Study Tracker' }).waitFor();
+    await X.ctx.close();
+  });
+
+  await step('Year 2: units and modules from the course folder; progress is separate from Year 1', async () => {
+    const X = await newUser(browser, undefined, 'year2');
+    await login(X.page, ALICE); await X.page.locator('.dash-hero').waitFor();
+    await openLipides(X.page);
+    const y1pct = await pctText(X.page);
+    await X.page.goto(`${BASE}/#/year`);
+    await X.page.locator('.year-card', { hasText: 'Year 2' }).getByRole('button', { name: 'Enter' }).click();
+    await X.page.locator('.sem-card', { hasText: 'Unités' }).getByRole('button', { name: /view plan/i }).click();
+    await X.page.locator('.dash-hero', { hasText: '2ème année de médecine' }).waitFor();
+    expect((await sql(`select selected_year || selected_semester from profiles where email = '${ALICE.email}'`)) === '2U', 'year 2 not saved');
+    await X.page.goto(`${BASE}/#/modules`); await settled(X.page);
+    const units = await X.page.locator('.module-row .module-title').allTextContents();
+    expect(units.length === 5 && units[0].startsWith('Unité 01') && units[4].includes('nerveux'), `units: ${units.join(' / ')}`);
+    await X.page.locator('.module-row', { hasText: 'Unité 03' }).click();
+    await X.page.locator('.module-row', { hasText: 'Physiologie' }).click(); await settled(X.page);
+    const t = await lessonTitles(X.page);
+    expect(t.length === 6 && t[0].includes('Circulation rénale') && t[5].includes('dilution des urines'), `lessons: ${t.join(' / ')}`);
+    await toggleStage(X.page, 0);
+    expect((await pctText(X.page)) === '16.7%', `expected 16.7%, got ${await pctText(X.page)}`);
+    await X.page.goto(`${BASE}/#/modules`); await settled(X.page);
+    await X.page.getByRole('tab', { name: 'Modules' }).click(); await settled(X.page);
+    const mods = await X.page.locator('.module-row .module-title').allTextContents();
+    expect(mods.join('|') === 'Génétique|Immunologie', `modules: ${mods.join(' / ')}`);
+    await X.page.screenshot({ path: `${SHOTS}/40-year2-modules.png`, fullPage: true });
+    // back to Year 1: its progress is untouched
+    await X.page.goto(`${BASE}/#/year/1`);
+    await X.page.getByRole('button', { name: /view plan/i }).nth(1).click();
+    await X.page.locator('.dash-hero', { hasText: '1ère année de médecine' }).waitFor();
+    await openLipides(X.page);
+    expect((await pctText(X.page)) === y1pct, `Year 1 progress changed: ${y1pct} -> ${await pctText(X.page)}`);
     await X.ctx.close();
   });
 

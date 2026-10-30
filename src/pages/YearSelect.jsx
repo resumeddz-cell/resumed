@@ -5,8 +5,9 @@ import { profileApi, errorMessage } from '../lib/api.js';
 import { navigate } from '../lib/router.js';
 import { useToast } from '../state/toast.jsx';
 import { WavingMascot } from '../components/Mascot.jsx';
+import { yearOf } from '../lib/years.js';
 
-const LATER_YEARS = [2, 3, 4, 5, 6, 7];
+const LATER_YEARS = [3, 4, 5, 6, 7];
 
 export function YearSelectPage() {
   const { profile } = useAuth();
@@ -30,6 +31,14 @@ export function YearSelectPage() {
           <p className="muted">Semester 1 and Semester 2 courses, lesson tracking, revisions, QCM, planner and Pomodoro.</p>
           <button className="btn btn-primary" onClick={() => navigate('/year/1')}>Enter <LuArrowRight aria-hidden /></button>
         </article>
+        <article className="year-card card year-active">
+          <img src="assets/art/clipboard.webp" alt="" className="year-art" />
+          <div className="year-badge">Year 2</div>
+          <h2>Second-Year Medical Student</h2>
+          <p className="hand">2ème année de médecine</p>
+          <p className="muted">Units 01–05 (cardio-respiratoire, digestif, urinaire, endocrino-génital, nerveux) and the Génétique and Immunologie modules.</p>
+          <button className="btn btn-primary" onClick={() => navigate('/year/2')}>Enter <LuArrowRight aria-hidden /></button>
+        </article>
         {LATER_YEARS.map((y) => (
           <article key={y} className="year-card card year-locked" aria-disabled="true">
             <LuGraduationCap aria-hidden className="year-icon" />
@@ -42,14 +51,21 @@ export function YearSelectPage() {
   );
 }
 
-export function SemesterSelectPage() {
+const SECTION_CARDS = {
+  1: [['S1', '1er semestre', 'sem_s1', 'teal', 'Planning, courses, revisions and QCM of the 1st semester.'],
+      ['S2', '2ème semestre', 'sem_s2', 'pink', 'Planning, courses, revisions and QCM of the 2nd semester.']],
+  2: [['U', 'Unités', 'notes_microscope', 'teal', 'Unités 01 to 05: anatomie, histologie, physiologie, biochimie and biophysique of each system.'],
+      ['M', 'Modules', 'notes_books', 'pink', 'The annual modules: Génétique and Immunologie.']],
+};
+
+export function SemesterSelectPage({ year = 1 }) {
   const { profile, setProfile } = useAuth();
   const toast = useToast();
   const [busy, setBusy] = useState(null);
   const choose = async (sem) => {
     setBusy(sem);
     try {
-      const p = await profileApi.update({ selected_year: 1, selected_semester: sem });
+      const p = await profileApi.update({ selected_year: year, selected_semester: sem });
       setProfile(p); navigate('/', { replace: true });
     } catch (e) { toast.error(`Not saved: ${errorMessage(e)}`, { action: 'Retry', onAction: () => choose(sem) }); }
     finally { setBusy(null); }
@@ -60,16 +76,16 @@ export function SemesterSelectPage() {
         <WavingMascot className="sem-mascot" />
         <div>
           <h1 className="ph-title"><span className="brush">Bienvenue !</span></h1>
-          <p className="ph-sub">Choose the semester you want to study and go straight to your personalised planner.</p>
+          <p className="ph-sub">{year === 1 ? 'Choose the semester you want to study' : 'Choose the units or the modules'} and go straight to your personalised planner.</p>
         </div>
       </section>
-      <h2 className="sem-year"><img src="assets/art/books.webp" alt="" /> <span className="brush-pink">1ère année de médecine</span> <img src="assets/art/clipboard.webp" alt="" /></h2>
+      <h2 className="sem-year"><img src="assets/art/books.webp" alt="" /> <span className="brush-pink">{yearOf(year).label}</span> <img src="assets/art/clipboard.webp" alt="" /></h2>
       <div className="sem-grid">
-        {[['S1', '1er semestre', 'sem_s1', 'teal'], ['S2', '2ème semestre', 'sem_s2', 'pink']].map(([sem, label, art, tone]) => (
-          <article key={sem} className={`sem-card card tone-${tone} ${profile.selected_semester === sem ? 'current' : ''}`}>
+        {SECTION_CARDS[year].map(([sem, label, art, tone, text]) => (
+          <article key={sem} className={`sem-card card tone-${tone} ${profile.selected_year === year && profile.selected_semester === sem ? 'current' : ''}`}>
             <h3>{label}</h3>
             <img src={`assets/art/${art}.webp`} alt={sem} className="sem-art" />
-            <p className="muted">Planning, courses, revisions and QCM of the {sem === 'S1' ? '1st' : '2nd'} semester.</p>
+            <p className="muted">{text}</p>
             <button className={`btn ${tone === 'pink' ? 'btn-pink' : 'btn-primary'}`} disabled={!!busy} onClick={() => choose(sem)}>
               {busy === sem ? 'Saving…' : 'View plan'} <LuArrowRight aria-hidden /></button>
           </article>

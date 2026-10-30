@@ -10,31 +10,36 @@ import { fmtDateTime } from '../lib/dates.js';
 import { useToast } from '../state/toast.jsx';
 import { Loader, ErrorBox, PageHeader, ProgressLine, ProgressBar, Empty, Img, Modal, Slogan } from '../components/ui.jsx';
 import { t } from '../lib/i18n.js';
+import { sectionsOf, sectionInfo, validSection } from '../lib/years.js';
 
 const STAGE_ICON = { learned: LuBookOpen, revised1: LuRefreshCw, revised2: LuRotateCw, qcm: LuSquareCheckBig };
 
-export function SemesterTabs({ value, onChange }) {
+export function SemesterTabs({ value, onChange, year }) {
+  const { profile } = useAuth();
+  const secs = sectionsOf(year || profile.selected_year || 1);
   return (
-    <div className="seg" role="tablist" aria-label="Semester">
-      {['S1', 'S2'].map((s) => (
-        <button key={s} role="tab" aria-selected={value === s} className={value === s ? 'active' : ''} onClick={() => onChange(s)}>
-          {s === 'S1' ? 'Semester 1 (S1)' : 'Semester 2 (S2)'}
+    <div className="seg" role="tablist" aria-label={secs[0].noun}>
+      {secs.map((s) => (
+        <button key={s.id} role="tab" aria-selected={value === s.id} className={value === s.id ? 'active' : ''} onClick={() => onChange(s.id)}>
+          {s.tab}
         </button>
       ))}
     </div>
   );
 }
 
+// current year + section (semester for Year 1, units / modules for Year 2), saved on the profile
 export function useSemester() {
   const { profile, setProfile } = useAuth();
   const toast = useToast();
-  const sem = profile.selected_semester || 'S1';
+  const year = profile.selected_year || 1;
+  const sem = validSection(year, profile.selected_semester);
   const setSem = async (s) => {
     if (s === sem) return;
     try { setProfile(await profileApi.update({ selected_semester: s })); }
     catch (e) { toast.error(`Not saved: ${errorMessage(e)}`); }
   };
-  return [sem, setSem];
+  return [sem, setSem, year];
 }
 
 function ModuleRow({ node, pmap }) {
@@ -54,22 +59,22 @@ function ModuleRow({ node, pmap }) {
 
 export function ModulesPage() {
   const { ready, error, reload, tree, pmap } = useCurriculum();
-  const [sem, setSem] = useSemester();
+  const [sem, setSem, year] = useSemester();
   if (error) return <ErrorBox error={error} onRetry={reload} title="Courses could not be loaded" />;
   if (!ready) return <Loader />;
-  const roots = tree.roots.filter((m) => m.year === 1 && m.semester === sem && m.active !== false);
+  const roots = tree.roots.filter((m) => m.year === year && m.semester === sem && m.active !== false);
+  const info = sectionInfo(sem);
   const all = stats(roots.flatMap((r) => allLessons(r)), pmap);
   return (
     <div className="page">
-      <PageHeader title={sem === 'S1' ? '1ère année — Semestre 1 (S1)' : 'S2'} subtitle="Choose a subject"
-                  hero={sem === 'S1' ? 'art/hero_p07.webp' : 'art/hero_p23.webp'} />
+      <PageHeader title={info.title} subtitle={year === 2 && sem === 'U' ? 'Choose a unit' : 'Choose a subject'} hero={info.hero} />
       <SemesterTabs value={sem} onChange={setSem} />
       <section className="card overall">
-        <div className="row between"><h2 className="h3">Semester progress</h2><strong className="pct big">{fmtPct(all.pct)}</strong></div>
-        <ProgressBar pct={all.pct} size="lg" label="Semester progress" />
+        <div className="row between"><h2 className="h3">{year === 1 ? 'Semester progress' : `${info.tab} — progress`}</h2><strong className="pct big">{fmtPct(all.pct)}</strong></div>
+        <ProgressBar pct={all.pct} size="lg" label={`${info.tab} progress`} />
         <p className="muted small">{all.learned} of {all.total} lessons learned · {all.remaining} remaining</p>
       </section>
-      {roots.length === 0 ? <Empty title="No subjects yet">The administrator has not added subjects for this semester.</Empty> : (
+      {roots.length === 0 ? <Empty title="No subjects yet">The administrator has not added subjects here yet.</Empty> : (
         <div className="module-list">{roots.map((m) => <ModuleRow key={m.id} node={m} pmap={pmap} />)}</div>
       )}
       <Slogan />

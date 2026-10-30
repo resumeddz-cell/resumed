@@ -11,6 +11,7 @@ import { useToast } from '../state/toast.jsx';
 import { Loader, ErrorBox, Stat, ProgressBar, ProgressLine, Img, Empty } from '../components/ui.jsx';
 import { BarChart } from '../components/Charts.jsx';
 import { SemesterTabs, useSemester } from './Modules.jsx';
+import { sectionInfo, yearOf } from '../lib/years.js';
 
 const FEATURES = [
   { to: '/planner', title: 'Weekly Planner', text: 'Plan your week, organise your courses and manage your time.', art: 'feat_planner', tone: 'teal' },
@@ -24,7 +25,8 @@ export default function Dashboard() {
   const cur = useCurriculum();
   const timer = useTimer();
   const toast = useToast();
-  const [sem, setSem] = useSemester();
+  const [sem, setSem, year] = useSemester();
+  const info = sectionInfo(sem);
   const [week, setWeek] = useState(null);   // { tasks, sessions }
   const [err, setErr] = useState(null);
   const [lastModule, setLastModule] = useState(null);
@@ -64,7 +66,7 @@ export default function Dashboard() {
   const name = profile.display_name || profile.email.split('@')[0];
   const todayISO = toISODate(today());
   const loading = !week || !cur.ready;
-  const roots = cur.ready ? cur.tree.roots.filter((m) => m.semester === sem && m.active !== false) : [];
+  const roots = cur.ready ? cur.tree.roots.filter((m) => m.year === year && m.semester === sem && m.active !== false) : [];
   const semStats = cur.ready ? stats(roots.flatMap(allLessons), cur.pmap) : null;
   const todays = week ? week.tasks.filter((x) => x.task_date === todayISO) : [];
   const weekDone = week ? week.tasks.filter((x) => x.status === 'done').length : 0;
@@ -87,7 +89,7 @@ export default function Dashboard() {
         <img src="assets/mascot/mascot_wave_small.webp" alt="" className="dash-mascot" />
         <div className="dash-hello">
           <p className="hand muted">Bienvenue en</p>
-          <h1 className="ph-title"><span className="brush">1ère année de médecine</span></h1>
+          <h1 className="ph-title"><span className="brush">{yearOf(year).label}</span></h1>
           <p className="ph-sub">Hello {name} — organise your year with the right tools and move forward step by step.</p>
           <SemesterTabs value={sem} onChange={setSem} />
         </div>
@@ -106,7 +108,7 @@ export default function Dashboard() {
                   sub={`${weekDone} done this week`} />
             <Stat icon={<LuTimer />} tone="pink" label="Focus sessions today" value={todaysSessions} sub={`${completedSessions.length} this week`} />
             <Stat icon={<LuClock />} tone="lilac" label="Study time this week" value={fmtDuration(studySeconds)} sub="active time, pauses excluded" />
-            <Stat icon={<LuBookOpen />} tone="blue" label={`Lessons learned (${sem})`} value={fmtPct(semStats.pct)}
+            <Stat icon={<LuBookOpen />} tone="blue" label={`Lessons learned (${info.short})`} value={fmtPct(semStats.pct)}
                   sub={`${semStats.learned} / ${semStats.total} lessons`} />
           </div>
 
@@ -135,9 +137,9 @@ export default function Dashboard() {
           </div>
 
           <section className="card">
-            <div className="row between"><h2 className="h3">Course progress — {sem}</h2>
+            <div className="row between"><h2 className="h3">Course progress — {info.short}</h2>
               <button className="link" onClick={() => navigate('/modules')}>All courses <LuArrowRight aria-hidden /></button></div>
-            <ProgressBar pct={semStats.pct} size="lg" label="Semester progress" />
+            <ProgressBar pct={semStats.pct} size="lg" label={`${info.short} progress`} />
             <div className="mini-modules">
               {roots.map((m) => (
                 <button key={m.id} className="mini-module" onClick={() => navigate(`/modules/${m.id}`)}>

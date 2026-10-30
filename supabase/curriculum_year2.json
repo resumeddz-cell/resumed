@@ -1,0 +1,976 @@
+[
+ {
+  "semester": "U",
+  "modules": [
+   {
+    "title": "Unité 01 — L'appareil cardio-respiratoire",
+    "icon": "badge:01",
+    "hero": "art/hero_p41.webp",
+    "lessons": [],
+    "children": [
+     {
+      "title": "Anatomie",
+      "icon": "icons/p07_01.webp",
+      "hero": "art/hero_p25.webp",
+      "lessons": [
+       {
+        "number": "01",
+        "title": "Thorax and mediastinum"
+       },
+       {
+        "number": "02",
+        "title": "Configuration externe et interne du coeur"
+       },
+       {
+        "number": "03",
+        "title": "Le péricarde et rapports du coeur"
+       },
+       {
+        "number": "04",
+        "title": "Vascularisation du coeur"
+       },
+       {
+        "number": "05",
+        "title": "Innervation intrinseque extrinseque du cœur"
+       },
+       {
+        "number": "06",
+        "title": "Aorte thoracique"
+       },
+       {
+        "number": "07",
+        "title": "Le système cave, le système azygos et le conduit thoracique"
+       },
+       {
+        "number": "08",
+        "title": "Trachée et segmentation bronchique (Trachea and bronchial segmentation)"
+       },
+       {
+        "number": "09",
+        "title": "Les poumons et plèvres"
+       },
+       {
+        "number": "10",
+        "title": "Le larynx"
+       },
+       {
+        "number": "11",
+        "title": "Muscles moteurs de la ventilation"
+       }
+      ],
+      "children": []
+     },
+     {
+      "title": "Biophysique",
+      "icon": "icons/p07_03.webp",
+      "hero": "art/hero_p35.webp",
+      "lessons": [
+       {
+        "number": "01",
+        "title": "Biophysique cardio-vasculaire"
+       }
+      ],
+      "children": []
+     },
+     {
+      "title": "Histologie",
+      "icon": "icons/p23_07.webp",
+      "hero": "art/hero_p40.webp",
+      "lessons": [
+       {
+        "number": "01",
+        "title": "Paroi cardiaque"
+       },
+       {
+        "number": "02",
+        "title": "Artères"
+       },
+       {
+        "number": "03",
+        "title": "Veines"
+       },
+       {
+        "number": "04",
+        "title": "Circulation lymphatique"
+       },
+       {
+        "number": "05",
+        "title": "Thymus"
+       },
+       {
+        "number": "06",
+        "title": "Moelle osseuse"
+       },
+       {
+        "number": "07",
+        "title": "La Rate"
+       },
+       {
+        "number": "08",
+        "title": "Le ganglion lymphatique"
+       },
+       {
+        "number": "09",
+        "title": "Développement embryologique de l'Appareil Respiratoire"
+       },
+       {
+        "number": "10",
+        "title": "Capillaires sanguins"
+       },
+       {
+        "number": "11",
+        "title": "Voies Aériennes Inférieures"
+       },
+       {
+        "number": "12",
+        "title": "Voies Aériennes supérieures"
+       },
+       {
+        "number": "13",
+        "title": "Poumons et Plèvre"
+       }
+      ],
+      "children": []
+     },
+     {
+      "title": "Physiologie",
+      "icon": "icons/p23_08.webp",
+      "hero": "art/hero_p41.webp",
+      "lessons": [
+       {
+        "number": "01",
+        "title": "L'électrophysiologie cardiaque"
+       },
+       {
+        "number": "02",
+        "title": "Le cycle cardiaque"
+       },
+       {
+        "number": "03",
+        "title": "Débit cardiaque"
+       },
+       {
+        "number": "04",
+        "title": "Régulation de la pression artérielle"
+       },
+       {
+        "number": "05",
+        "title": "Circulation Coronaire"
+       },
+       {
+        "number": "06",
+        "title": "Système à basse pression"
+       },
+       {
+        "number": "07",
+        "title": "Transport des gaz dans le sang"
+       },
+       {
+        "number": "08",
+        "title": "Mécanique ventilatoire"
+       },
+       {
+        "number": "09",
+        "title": "Les échanges Alvéolo-Capillaires"
+       },
+       {
+        "number": "10",
+        "title": "Physiologie du sang"
+       },
+       {
+        "number": "11",
+        "title": "Régulation de la respiration"
+       }
+      ],
+      "children": []
+     }
+    ]
+   },
+   {
+    "title": "Unité 02 — L'appareil digestif",
+    "icon": "badge:02",
+    "hero": "art/hero_p08.webp",
+    "lessons": [],
+    "children": [
+     {
+      "title": "Anatomie",
+      "icon": "icons/p07_01.webp",
+      "hero": "art/hero_p25.webp",
+      "lessons": [
+       {
+        "number": "01",
+        "title": "Cavité buccale et glandes annexes"
+       },
+       {
+        "number": "02",
+        "title": "Pharynx"
+       },
+       {
+        "number": "03",
+        "title": "Anatomie de péritoine"
+       },
+       {
+        "number": "04",
+        "title": "Paroi abdominale"
+       },
+       {
+        "number": "05",
+        "title": "Foie et voies biliaires"
+       },
+       {
+        "number": "06",
+        "title": "Œsophage"
+       },
+       {
+        "number": "07",
+        "title": "Estomac"
+       },
+       {
+        "number": "08",
+        "title": "Duodénum et Pancréas"
+       },
+       {
+        "number": "09",
+        "title": "Jejuno-Ileon"
+       },
+       {
+        "number": "10",
+        "title": "Côlon"
+       },
+       {
+        "number": "11",
+        "title": "Le rectum"
+       },
+       {
+        "number": "12",
+        "title": "Rate et Système porte"
+       }
+      ],
+      "children": []
+     },
+     {
+      "title": "Biochimie",
+      "icon": "icons/p23_03.webp",
+      "hero": "art/hero_p31.webp",
+      "lessons": [
+       {
+        "number": "01",
+        "title": "Vitamines"
+       },
+       {
+        "number": "02",
+        "title": "Oligoéléments"
+       },
+       {
+        "number": "03",
+        "title": "Métabolisme du fer"
+       }
+      ],
+      "children": []
+     },
+     {
+      "title": "Histologie",
+      "icon": "icons/p23_07.webp",
+      "hero": "art/hero_p40.webp",
+      "lessons": [
+       {
+        "number": "01",
+        "title": "Cavité buccale"
+       },
+       {
+        "number": "02",
+        "title": "Histologie de L'œsophage"
+       },
+       {
+        "number": "03",
+        "title": "Estomac"
+       },
+       {
+        "number": "04",
+        "title": "Intestin grêle"
+       },
+       {
+        "number": "05",
+        "title": "Colon et canal anal"
+       },
+       {
+        "number": "06",
+        "title": "Foie"
+       },
+       {
+        "number": "07",
+        "title": "Glandes salivaires"
+       },
+       {
+        "number": "08",
+        "title": "Pancréas exocrine"
+       }
+      ],
+      "children": []
+     },
+     {
+      "title": "Physiologie",
+      "icon": "icons/p23_08.webp",
+      "hero": "art/hero_p41.webp",
+      "lessons": [
+       {
+        "number": "01",
+        "title": "Phase buccale"
+       },
+       {
+        "number": "02",
+        "title": "Déglutition"
+       },
+       {
+        "number": "03",
+        "title": "Secretion gastrique"
+       },
+       {
+        "number": "04",
+        "title": "Secretion biliaire"
+       },
+       {
+        "number": "05",
+        "title": "Le pancreas exocrine"
+       },
+       {
+        "number": "06",
+        "title": "Phase Intestinale"
+       },
+       {
+        "number": "07",
+        "title": "La phase colique"
+       }
+      ],
+      "children": []
+     }
+    ]
+   },
+   {
+    "title": "Unité 03 — L'appareil urinaire",
+    "icon": "badge:03",
+    "hero": "art/hero_p25.webp",
+    "lessons": [],
+    "children": [
+     {
+      "title": "Anatomie",
+      "icon": "icons/p07_01.webp",
+      "hero": "art/hero_p25.webp",
+      "lessons": [
+       {
+        "number": "01",
+        "title": "Reins"
+       },
+       {
+        "number": "02",
+        "title": "Uretères"
+       },
+       {
+        "number": "03",
+        "title": "Vessie et Urètre"
+       }
+      ],
+      "children": []
+     },
+     {
+      "title": "Biochimie",
+      "icon": "icons/p23_03.webp",
+      "hero": "art/hero_p31.webp",
+      "lessons": [
+       {
+        "number": "01",
+        "title": "Equilibre Acido-Basique"
+       }
+      ],
+      "children": []
+     },
+     {
+      "title": "Histologie",
+      "icon": "icons/p23_07.webp",
+      "hero": "art/hero_p40.webp",
+      "lessons": [
+       {
+        "number": "01",
+        "title": "Rein"
+       },
+       {
+        "number": "02",
+        "title": "Embryologie Urinaire"
+       },
+       {
+        "number": "03",
+        "title": "Voies urinaires"
+       }
+      ],
+      "children": []
+     },
+     {
+      "title": "Physiologie",
+      "icon": "icons/p23_08.webp",
+      "hero": "art/hero_p41.webp",
+      "lessons": [
+       {
+        "number": "01",
+        "title": "Circulation rénale"
+       },
+       {
+        "number": "02",
+        "title": "Filtration Glomérulaire"
+       },
+       {
+        "number": "03",
+        "title": "Transfert tubulaire"
+       },
+       {
+        "number": "04",
+        "title": "Physiologie de la miction"
+       },
+       {
+        "number": "05",
+        "title": "Rein et régulation du PH"
+       },
+       {
+        "number": "06",
+        "title": "Pouvoir de concentration et de dilution des urines"
+       }
+      ],
+      "children": []
+     }
+    ]
+   },
+   {
+    "title": "Unité 04 — L'appareil endocrino-génital",
+    "icon": "badge:04",
+    "hero": "art/hero_p23.webp",
+    "lessons": [],
+    "children": [
+     {
+      "title": "Anatomie",
+      "icon": "icons/p07_01.webp",
+      "hero": "art/hero_p25.webp",
+      "lessons": [
+       {
+        "number": "01",
+        "title": "Glande Hypophyse"
+       },
+       {
+        "number": "02",
+        "title": "Glande Thyroïde et Parathyroïde"
+       },
+       {
+        "number": "03",
+        "title": "Glandes Surrénales"
+       },
+       {
+        "number": "04",
+        "title": "Glande mammaire"
+       },
+       {
+        "number": "05",
+        "title": "Utérus et annexes"
+       },
+       {
+        "number": "06",
+        "title": "Vagin et organes génitaux externes chez la femme"
+       },
+       {
+        "number": "07",
+        "title": "Testicules et voies spermatiques"
+       },
+       {
+        "number": "08",
+        "title": "Prostate"
+       },
+       {
+        "number": "09",
+        "title": "Périnée"
+       },
+       {
+        "number": "10",
+        "title": "Penis"
+       }
+      ],
+      "children": []
+     },
+     {
+      "title": "Biochimie",
+      "icon": "icons/p23_03.webp",
+      "hero": "art/hero_p31.webp",
+      "lessons": [
+       {
+        "number": "01",
+        "title": "Généralités sur les hormones"
+       },
+       {
+        "number": "2.1",
+        "title": "Hormones hypothalamo-hypophysaires (partie 1)"
+       },
+       {
+        "number": "2.2",
+        "title": "Hormones hypothalamo-hypophysaires (partie 2)"
+       },
+       {
+        "number": "2.3",
+        "title": "Hormones hypothalamo-hypophysaires (partie 3)"
+       },
+       {
+        "number": "03",
+        "title": "Hormones Steroïdes"
+       },
+       {
+        "number": "04",
+        "title": "Aspect biochimique du remodelage osseux"
+       },
+       {
+        "number": "05",
+        "title": "Hormones Thyroïdiennes"
+       },
+       {
+        "number": "06",
+        "title": "Cathécholamines"
+       },
+       {
+        "number": "TD",
+        "title": "TD — Diabète insipide"
+       }
+      ],
+      "children": []
+     },
+     {
+      "title": "Histologie",
+      "icon": "icons/p23_07.webp",
+      "hero": "art/hero_p40.webp",
+      "lessons": [
+       {
+        "number": "01",
+        "title": "Appareil hypothalamo-hypophysaire"
+       },
+       {
+        "number": "02",
+        "title": "Thyroïde"
+       },
+       {
+        "number": "03",
+        "title": "Glandes surrénales"
+       },
+       {
+        "number": "04",
+        "title": "Epiphyse"
+       },
+       {
+        "number": "05",
+        "title": "Pancréas endocrine"
+       },
+       {
+        "number": "06",
+        "title": "Développement de la gonade indifférenciée"
+       },
+       {
+        "number": "07",
+        "title": "Ovaire"
+       },
+       {
+        "number": "08",
+        "title": "Trompes Utérines"
+       },
+       {
+        "number": "09",
+        "title": "Utérus et le vagin"
+       },
+       {
+        "number": "10",
+        "title": "Testicules"
+       },
+       {
+        "number": "11",
+        "title": "Voies spermatiques"
+       },
+       {
+        "number": "12",
+        "title": "Glandes annexes génitales"
+       }
+      ],
+      "children": []
+     },
+     {
+      "title": "Physiologie",
+      "icon": "icons/p23_08.webp",
+      "hero": "art/hero_p41.webp",
+      "lessons": [
+       {
+        "number": "01",
+        "title": "Principes des systèmes de contrôle hormonal"
+       },
+       {
+        "number": "02",
+        "title": "Physiologie de l'axe Hypothalamo-Hypophysaire"
+       },
+       {
+        "number": "03",
+        "title": "Complexe hormonal GH- Somatomédines"
+       },
+       {
+        "number": "04",
+        "title": "Physiologie de la glande thyroïde"
+       },
+       {
+        "number": "05",
+        "title": "Homeostasie-phosphocalcique"
+       },
+       {
+        "number": "06",
+        "title": "Physiologie des surrénales"
+       },
+       {
+        "number": "07",
+        "title": "Complexe Insuline-Glucagon"
+       },
+       {
+        "number": "08",
+        "title": "Fonction gonadique féminine"
+       },
+       {
+        "number": "09",
+        "title": "Fonction gonadique masculine"
+       }
+      ],
+      "children": []
+     }
+    ]
+   },
+   {
+    "title": "Unité 05 — L'appareil nerveux",
+    "icon": "badge:05",
+    "hero": "art/hero_p41.webp",
+    "lessons": [],
+    "children": [
+     {
+      "title": "Anatomie",
+      "icon": "icons/p07_01.webp",
+      "hero": "art/hero_p25.webp",
+      "lessons": [
+       {
+        "number": "01",
+        "title": "Os du crâne"
+       },
+       {
+        "number": "02",
+        "title": "Os de la face et l'os hyoïde"
+       },
+       {
+        "number": "03",
+        "title": "Fosses nasales"
+       },
+       {
+        "number": "04",
+        "title": "Appareil manducateur et rachis cervical"
+       },
+       {
+        "number": "05",
+        "title": "Vaisseaux de la tête et du cou"
+       },
+       {
+        "number": "06",
+        "title": "Muscles peauciers et les muscles du cou"
+       },
+       {
+        "number": "07",
+        "title": "Télencéphale et diencéphale (cerebrum)"
+       },
+       {
+        "number": "08",
+        "title": "Anatomie de l'orbite"
+       },
+       {
+        "number": "09",
+        "title": "Moelle Epinière"
+       },
+       {
+        "number": "10",
+        "title": "Nerfs crâniens (partie 1)"
+       },
+       {
+        "number": "11",
+        "title": "Œil et nerf optique"
+       },
+       {
+        "number": "12",
+        "title": "Vascularisation arterielle cérébrale"
+       },
+       {
+        "number": "13",
+        "title": "Vascularisation veineuse cérébrale"
+       },
+       {
+        "number": "14",
+        "title": "Oreille et nerf VIII"
+       },
+       {
+        "number": "15",
+        "title": "Cervelet"
+       },
+       {
+        "number": "16",
+        "title": "Tronc cérébral"
+       }
+      ],
+      "children": []
+     },
+     {
+      "title": "Biophysique",
+      "icon": "icons/p07_03.webp",
+      "hero": "art/hero_p35.webp",
+      "lessons": [
+       {
+        "number": "01",
+        "title": "Biophysique de l'audition"
+       },
+       {
+        "number": "02",
+        "title": "Biophysique de la vision"
+       }
+      ],
+      "children": []
+     },
+     {
+      "title": "Histologie",
+      "icon": "icons/p23_07.webp",
+      "hero": "art/hero_p40.webp",
+      "lessons": [
+       {
+        "number": "01",
+        "title": "Développement embryonnaire du système nerveux central"
+       },
+       {
+        "number": "02",
+        "title": "Ganglions Rachidiens"
+       },
+       {
+        "number": "03",
+        "title": "Cortex Cérébelleux"
+       },
+       {
+        "number": "04",
+        "title": "Cortex Cérébral"
+       },
+       {
+        "number": "05",
+        "title": "Moelle Epinière"
+       },
+       {
+        "number": "06",
+        "title": "Oreille"
+       },
+       {
+        "number": "07",
+        "title": "Rétine Visuelle"
+       },
+       {
+        "number": "08",
+        "title": "Bourgeons du gout et muqueuse olfactive"
+       }
+      ],
+      "children": []
+     },
+     {
+      "title": "Physiologie",
+      "icon": "icons/p23_08.webp",
+      "hero": "art/hero_p41.webp",
+      "lessons": [
+       {
+        "number": "01",
+        "title": "Moelle Epinière organe de conduction"
+       },
+       {
+        "number": "02",
+        "title": "Formation Reticulée"
+       },
+       {
+        "number": "03",
+        "title": "Récepteurs sensoriels"
+       },
+       {
+        "number": "04",
+        "title": "Somesthésie-Douleur"
+       },
+       {
+        "number": "05",
+        "title": "Moelle épinière centre réflexe"
+       },
+       {
+        "number": "06",
+        "title": "Tronc cérébral"
+       },
+       {
+        "number": "07",
+        "title": "Racines Rachidiennes"
+       },
+       {
+        "number": "08",
+        "title": "Physiologie du cervelet"
+       },
+       {
+        "number": "09",
+        "title": "Physiologie de la vision"
+       },
+       {
+        "number": "10",
+        "title": "Cortex moteur et voies motrices corticofuges"
+       },
+       {
+        "number": "11",
+        "title": "Noyaux gris de la base"
+       },
+       {
+        "number": "12",
+        "title": "Physiologie de l'audition"
+       },
+       {
+        "number": "13",
+        "title": "Système veille-sommeil"
+       }
+      ],
+      "children": []
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "semester": "M",
+  "modules": [
+   {
+    "title": "Génétique",
+    "icon": "icons/p07_02.webp",
+    "hero": "art/hero_p31.webp",
+    "lessons": [
+     {
+      "number": "01",
+      "title": "Acides nucléiques"
+     },
+     {
+      "number": "02",
+      "title": "Organisation des génomes"
+     },
+     {
+      "number": "03",
+      "title": "Structure et organisation de la chromatine"
+     },
+     {
+      "number": "04",
+      "title": "Réplication"
+     },
+     {
+      "number": "05",
+      "title": "Transcription"
+     },
+     {
+      "number": "06",
+      "title": "Traduction"
+     },
+     {
+      "number": "07",
+      "title": "Modifications épigénétiques"
+     },
+     {
+      "number": "08",
+      "title": "La régulation de l’expression des gènes"
+     },
+     {
+      "number": "09",
+      "title": "Variants"
+     },
+     {
+      "number": "10",
+      "title": "Caryotype normal"
+     },
+     {
+      "number": "11",
+      "title": "Anomalies du caryotype"
+     },
+     {
+      "number": "12",
+      "title": "Extraction d'adn, PCR et séquencage de l'adn"
+     },
+     {
+      "number": "13",
+      "title": "Hybridation moléculaire, sondes, enzymes et vecteurs"
+     },
+     {
+      "number": "14",
+      "title": "Les Expériences de Mendel"
+     },
+     {
+      "number": "15.1",
+      "title": "Transmission des maladies génétiques"
+     },
+     {
+      "number": "15.2",
+      "title": "Transmission des maladies génétiques (Applications)"
+     }
+    ],
+    "children": []
+   },
+   {
+    "title": "Immunologie",
+    "icon": "icons/p23_06.webp",
+    "hero": "art/hero_p39.webp",
+    "lessons": [
+     {
+      "number": "01",
+      "title": "Organes lymphoïdes"
+     },
+     {
+      "number": "02",
+      "title": "Cellules présentatrices d'antigènes"
+     },
+     {
+      "number": "03",
+      "title": "Cellule NK"
+     },
+     {
+      "number": "04",
+      "title": "Granulocytes et Mastocytes"
+     },
+     {
+      "number": "05",
+      "title": "LB"
+     },
+     {
+      "number": "06",
+      "title": "LT"
+     },
+     {
+      "number": "07",
+      "title": "Antigènes"
+     },
+     {
+      "number": "08",
+      "title": "CMH"
+     },
+     {
+      "number": "09",
+      "title": "Immunoglobulines"
+     },
+     {
+      "number": "10",
+      "title": "Le Complément"
+     },
+     {
+      "number": "11",
+      "title": "Réponses immunitaires"
+     },
+     {
+      "number": "12",
+      "title": "Cytokines"
+     },
+     {
+      "number": "13",
+      "title": "Molécules d'adhésion cellulaire"
+     }
+    ],
+    "children": []
+   }
+  ]
+ }
+]

@@ -33,7 +33,8 @@ function ApprovedApp({ route }) {
 
   let page; let m;
   if (path === '/year') page = <YearSelectPage />;
-  else if (path === '/year/1') page = <SemesterSelectPage />;
+  else if (path === '/year/1') page = <SemesterSelectPage key="y1" year={1} />;
+  else if (path === '/year/2') page = <SemesterSelectPage key="y2" year={2} />;
   else if (needsYear) page = <YearSelectPage />;                        // first visit after approval
   else if (path === '/' || path === '/login' || path === '/register') page = <Dashboard />;
   else if (path === '/modules') page = <ModulesPage />;

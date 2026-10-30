@@ -5,6 +5,7 @@ import { useCurriculum } from '../../state/data.jsx';
 import { useToast } from '../../state/toast.jsx';
 import { Loader, ErrorBox, PageHeader, Modal, Field, Img } from '../../components/ui.jsx';
 import { SemesterTabs } from '../Modules.jsx';
+import { AVAILABLE_YEARS, sectionsOf, sectionInfo, yearOf } from '../../lib/years.js';
 
 function useIcons() {
   const [list, setList] = useState([]);
@@ -30,7 +31,7 @@ function ModuleForm({ initial, parents, onClose, onSaved }) {
   const save = async () => {
     setBusy(true); setErr(null);
     const payload = { title: f.title.trim(), description: f.description || null, icon: f.icon, hero: f.hero, active: f.active,
-      parent_id: f.parent_id || null, semester: f.semester, year: 1 };
+      parent_id: f.parent_id || null, semester: f.semester, year: f.year || 1 };
     try {
       const row = f.id ? await adminApi.updateModule(f.id, payload) : await adminApi.createModule({ ...payload, position: f.position || 999 });
       onSaved(row);
@@ -91,7 +92,9 @@ function LessonForm({ initial, modules, onClose, onSaved }) {
 export default function AdminCurriculum() {
   const cur = useCurriculum();
   const toast = useToast();
+  const [year, setYear] = useState(1);
   const [sem, setSem] = useState('S1');
+  const pickYear = (y) => { setYear(y); setSem(sectionsOf(y)[0].id); };
   const [open, setOpen] = useState({});
   const [modForm, setModForm] = useState(null);
   const [lesForm, setLesForm] = useState(null);
@@ -99,8 +102,8 @@ export default function AdminCurriculum() {
 
   if (cur.error) return <ErrorBox error={cur.error} onRetry={cur.reload} />;
   if (!cur.ready) return <Loader />;
-  const roots = cur.tree.roots.filter((r) => r.semester === sem);
-  const flat = []; const walk = (n, p) => { const label = p ? `${p} › ${n.title}` : `${n.semester} · ${n.title}`; flat.push({ id: n.id, label, semester: n.semester }); n.children.forEach((c) => walk(c, label)); };
+  const roots = cur.tree.roots.filter((r) => r.year === year && r.semester === sem);
+  const flat = []; const walk = (n, p) => { const label = p ? `${p} › ${n.title}` : `Y${n.year} ${sectionInfo(n.semester).short} · ${n.title}`; flat.push({ id: n.id, label, semester: n.semester, year: n.year }); n.children.forEach((c) => walk(c, label)); };
   cur.tree.roots.forEach((r) => walk(r, ''));
 
   const after = async (msg) => { await cur.reload(); toast.ok(msg); };
@@ -146,7 +149,7 @@ export default function AdminCurriculum() {
           </ul>
           <div className="row gap wrap">
             <button className="btn btn-small" onClick={() => setLesForm({ module_id: n.id, position: n.lessons.length + 1 })}><LuPlus aria-hidden /> Add lesson</button>
-            <button className="btn btn-small" onClick={() => setModForm({ parent_id: n.id, semester: n.semester, position: n.children.length + 1 })}><LuPlus aria-hidden /> Add chapter</button>
+            <button className="btn btn-small" onClick={() => setModForm({ parent_id: n.id, semester: n.semester, year: n.year, position: n.children.length + 1 })}><LuPlus aria-hidden /> Add chapter</button>
           </div>
         </div>
       )}
@@ -156,12 +159,15 @@ export default function AdminCurriculum() {
   return (
     <div className="page admin">
       <PageHeader title="Modules & lessons" subtitle="Changes apply instantly — no code changes needed" hero="art/feat_lessons.webp" back="/admin" />
-      <SemesterTabs value={sem} onChange={setSem} />
+      <div className="seg" role="tablist" aria-label="Academic year">
+        {AVAILABLE_YEARS.map((y) => <button key={y} role="tab" aria-selected={year === y} className={year === y ? 'active' : ''} onClick={() => pickYear(y)}>{yearOf(y).short}</button>)}
+      </div>
+      <SemesterTabs value={sem} onChange={setSem} year={year} />
       <p className="muted small">Tip: prefer <strong>hiding</strong> a module or making a lesson <strong>inactive</strong> over deleting it — deleting a lesson also deletes the students' completion records for it.</p>
       <ul className="adm-tree card">{roots.map((r, i) => renderModule(r, roots, i, 0))}</ul>
-      <button className="btn btn-primary" onClick={() => setModForm({ semester: sem, position: roots.length + 1 })}><LuPlus aria-hidden /> New subject in {sem}</button>
+      <button className="btn btn-primary" onClick={() => setModForm({ semester: sem, year, position: roots.length + 1 })}><LuPlus aria-hidden /> New subject in {yearOf(year).short} · {sectionInfo(sem).short}</button>
 
-      {modForm && <ModuleForm initial={modForm} parents={flat.filter((p) => p.semester === (modForm.semester || sem))} onClose={() => setModForm(null)}
+      {modForm && <ModuleForm initial={modForm} parents={flat.filter((p) => p.semester === (modForm.semester || sem) && p.year === (modForm.year || year))} onClose={() => setModForm(null)}
                               onSaved={() => { setModForm(null); after('Module saved'); }} />}
       {lesForm && <LessonForm initial={lesForm} modules={flat} onClose={() => setLesForm(null)} onSaved={() => { setLesForm(null); after('Lesson saved'); }} />}
       {confirm && (

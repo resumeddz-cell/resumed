@@ -8,6 +8,8 @@ export const asset = (p) => (p ? `assets/${p}` : null);
 
 export function Img({ src, alt = '', className = '', ...rest }) {
   if (!src) return null;
+  // "badge:01" → a numbered badge (used for the Year 2 units, which have no illustration of their own)
+  if (src.startsWith('badge:')) return <span className={`icon-badge ${className}`} aria-hidden>{src.slice(6)}</span>;
   return <img src={asset(src)} alt={alt} className={className} loading="lazy" decoding="async" {...rest} />;
 }
 
