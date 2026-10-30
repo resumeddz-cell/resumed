@@ -677,6 +677,31 @@ async function noHorizontalScroll(page) {
     await X.ctx.close();
   });
 
+  await step('Year 3: four units and five modules from the course folders', async () => {
+    const X = await newUser(browser, undefined, 'year3');
+    await login(X.page, ALICE); await X.page.locator('.dash-hero').waitFor();
+    await X.page.goto(`${BASE}/#/year`);
+    await X.page.locator('.year-card', { hasText: 'Year 3' }).getByRole('button', { name: 'Enter' }).click();
+    await X.page.locator('.sem-card', { hasText: 'Modules' }).getByRole('button', { name: /view plan/i }).click();
+    await X.page.locator('.dash-hero', { hasText: '3ème année de médecine' }).waitFor();
+    await X.page.goto(`${BASE}/#/modules`); await settled(X.page);
+    const mods = await X.page.locator('.module-row .module-title').allTextContents();
+    expect(mods.join('|') === 'Anatomie pathologique|Immunologie|Microbiologie|Pharmacologie|Parasitologie', `modules: ${mods.join(' / ')}`);
+    await X.page.getByRole('tab', { name: 'Unités' }).click(); await settled(X.page);
+    const units = await X.page.locator('.module-row .module-title').allTextContents();
+    expect(units.length === 4 && units[3].includes('Gastro-Hémato'), `units: ${units.join(' / ')}`);
+    await X.page.locator('.module-row', { hasText: 'Unité 01' }).click();
+    await X.page.locator('.module-row', { hasText: 'Sémiologie' }).click();
+    await X.page.locator('.module-row', { hasText: 'Cardio' }).click(); await settled(X.page);
+    const t = await lessonTitles(X.page);
+    expect(t.length === 13 && t[0].includes('Examen cardiaque'), `lessons: ${t.join(' / ')}`);
+    await X.page.screenshot({ path: `${SHOTS}/41-year3-semio-cardio.png`, fullPage: true });
+    await X.page.goto(`${BASE}/#/year/1`);
+    await X.page.getByRole('button', { name: /view plan/i }).nth(1).click();
+    await X.page.locator('.dash-hero', { hasText: '1ère année de médecine' }).waitFor();
+    await X.ctx.close();
+  });
+
   await step('No unexpected JavaScript errors in the browser console', async () => {
     expect(consoleErrors.length === 0, consoleErrors.slice(0, 5).join(' | '));
   });

@@ -1,5 +1,5 @@
--- Year 2: allow its sections (U = unités, M = modules) and add its curriculum.
--- Curriculum built from the course folder "2/-Deuxième année" (tools/gen_seed_year2.py).
+-- Year 2: allow the sections U (unités) and M (modules) and add the Year 2 curriculum.
+-- Curriculum built from the course folder "2/-Deuxième année" (tools/gen_seed_year2.py 2).
 -- Safe to re-run: existing rows (and admin edits) are never overwritten.
 begin;
 alter table public.modules drop constraint if exists modules_semester_check;

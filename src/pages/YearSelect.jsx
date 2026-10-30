@@ -7,7 +7,7 @@ import { useToast } from '../state/toast.jsx';
 import { WavingMascot } from '../components/Mascot.jsx';
 import { yearOf } from '../lib/years.js';
 
-const LATER_YEARS = [3, 4, 5, 6, 7];
+const LATER_YEARS = [4, 5, 6, 7];
 
 export function YearSelectPage() {
   const { profile } = useAuth();
@@ -39,6 +39,14 @@ export function YearSelectPage() {
           <p className="muted">Units 01–05 (cardio-respiratoire, digestif, urinaire, endocrino-génital, nerveux) and the Génétique and Immunologie modules.</p>
           <button className="btn btn-primary" onClick={() => navigate('/year/2')}>Enter <LuArrowRight aria-hidden /></button>
         </article>
+        <article className="year-card card year-active">
+          <img src="assets/art/feat_lessons.webp" alt="" className="year-art" />
+          <div className="year-badge">Year 3</div>
+          <h2>Third-Year Medical Student</h2>
+          <p className="hand">3ème année de médecine</p>
+          <p className="muted">Units 01–04 (sémiologie, physiopathologie, radiologie, biochimie) and the Anapath, Immunologie, Microbiologie, Pharmacologie and Parasitologie modules.</p>
+          <button className="btn btn-primary" onClick={() => navigate('/year/3')}>Enter <LuArrowRight aria-hidden /></button>
+        </article>
         {LATER_YEARS.map((y) => (
           <article key={y} className="year-card card year-locked" aria-disabled="true">
             <LuGraduationCap aria-hidden className="year-icon" />
@@ -56,6 +64,8 @@ const SECTION_CARDS = {
       ['S2', '2ème semestre', 'sem_s2', 'pink', 'Planning, courses, revisions and QCM of the 2nd semester.']],
   2: [['U', 'Unités', 'notes_microscope', 'teal', 'Unités 01 to 05: anatomie, histologie, physiologie, biochimie and biophysique of each system.'],
       ['M', 'Modules', 'notes_books', 'pink', 'The annual modules: Génétique and Immunologie.']],
+  3: [['U', 'Unités', 'notes_microscope', 'teal', 'Unités 01 to 04: sémiologie, physiopathologie, radiologie, biochimie (and psychologie médicale) of each system.'],
+      ['M', 'Modules', 'notes_books', 'pink', 'The modules: Anatomie pathologique, Immunologie, Microbiologie, Pharmacologie and Parasitologie.']],
 };
 
 export function SemesterSelectPage({ year = 1 }) {

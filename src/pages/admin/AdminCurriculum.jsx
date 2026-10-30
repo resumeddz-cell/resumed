@@ -103,7 +103,7 @@ export default function AdminCurriculum() {
   if (cur.error) return <ErrorBox error={cur.error} onRetry={cur.reload} />;
   if (!cur.ready) return <Loader />;
   const roots = cur.tree.roots.filter((r) => r.year === year && r.semester === sem);
-  const flat = []; const walk = (n, p) => { const label = p ? `${p} › ${n.title}` : `Y${n.year} ${sectionInfo(n.semester).short} · ${n.title}`; flat.push({ id: n.id, label, semester: n.semester, year: n.year }); n.children.forEach((c) => walk(c, label)); };
+  const flat = []; const walk = (n, p) => { const label = p ? `${p} › ${n.title}` : `Y${n.year} ${sectionInfo(n.semester, n.year).short} · ${n.title}`; flat.push({ id: n.id, label, semester: n.semester, year: n.year }); n.children.forEach((c) => walk(c, label)); };
   cur.tree.roots.forEach((r) => walk(r, ''));
 
   const after = async (msg) => { await cur.reload(); toast.ok(msg); };
@@ -165,7 +165,7 @@ export default function AdminCurriculum() {
       <SemesterTabs value={sem} onChange={setSem} year={year} />
       <p className="muted small">Tip: prefer <strong>hiding</strong> a module or making a lesson <strong>inactive</strong> over deleting it — deleting a lesson also deletes the students' completion records for it.</p>
       <ul className="adm-tree card">{roots.map((r, i) => renderModule(r, roots, i, 0))}</ul>
-      <button className="btn btn-primary" onClick={() => setModForm({ semester: sem, year, position: roots.length + 1 })}><LuPlus aria-hidden /> New subject in {yearOf(year).short} · {sectionInfo(sem).short}</button>
+      <button className="btn btn-primary" onClick={() => setModForm({ semester: sem, year, position: roots.length + 1 })}><LuPlus aria-hidden /> New subject in {yearOf(year).short} · {sectionInfo(sem, year).short}</button>
 
       {modForm && <ModuleForm initial={modForm} parents={flat.filter((p) => p.semester === (modForm.semester || sem) && p.year === (modForm.year || year))} onClose={() => setModForm(null)}
                               onSaved={() => { setModForm(null); after('Module saved'); }} />}

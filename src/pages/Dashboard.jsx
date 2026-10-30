@@ -26,7 +26,7 @@ export default function Dashboard() {
   const timer = useTimer();
   const toast = useToast();
   const [sem, setSem, year] = useSemester();
-  const info = sectionInfo(sem);
+  const info = sectionInfo(sem, year);
   const [week, setWeek] = useState(null);   // { tasks, sessions }
   const [err, setErr] = useState(null);
   const [lastModule, setLastModule] = useState(null);

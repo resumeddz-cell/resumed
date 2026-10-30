@@ -36,7 +36,7 @@ export function useModuleOptions() {
     const out = [];
     const walk = (n, prefix) => {
       if (n.active === false) return;
-      const label = prefix ? `${prefix} › ${n.title}` : `${sectionInfo(n.semester).short} · ${n.title}`;
+      const label = prefix ? `${prefix} › ${n.title}` : `${sectionInfo(n.semester, n.year).short} · ${n.title}`;
       out.push({ id: n.id, label }); n.children.forEach((c) => walk(c, label));
     };
     tree.roots.filter((r) => r.year === year).forEach((r) => walk(r, ''));

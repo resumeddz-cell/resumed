@@ -117,8 +117,8 @@ select pg_temp.ok((select status = 'rejected' from public.profiles where id = au
 
 -- ---------------------------------------------------------------- approved student: progress
 select pg_temp.act_as('alice@test.local');
-select pg_temp.ok((select count(*) = 35 from public.modules where year = 1) and (select count(*) = 27 from public.modules where year = 2), 'Approved student sees all active modules (35 in Year 1, 27 in Year 2)');
-select pg_temp.ok((select count(*) = 160 + 187 from public.lessons), 'Approved student sees 160 + 187 active lessons (inactive placeholder hidden)');
+select pg_temp.ok((select count(*) = 35 from public.modules where year = 1) and (select count(*) = 27 from public.modules where year = 2) and (select count(*) = 48 from public.modules where year = 3), 'Approved student sees all active modules (35 + 27 + 48)');
+select pg_temp.ok((select count(*) = 160 + 187 + 264 from public.lessons), 'Approved student sees 160 + 187 + 264 active lessons (inactive placeholder hidden)');
 do $$ begin
   update public.profiles set role = 'admin' where id = auth.uid();
   raise exception 'FAIL: student changed role';

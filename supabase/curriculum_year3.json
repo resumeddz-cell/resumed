@@ -1,0 +1,1452 @@
+[
+ {
+  "semester": "U",
+  "modules": [
+   {
+    "title": "Unité 01 — Cardiovasculo-pulmonaire",
+    "icon": "badge:01",
+    "hero": "art/hero_p41.webp",
+    "lessons": [],
+    "children": [
+     {
+      "title": "Psychologie médicale",
+      "icon": "badge:Ψ",
+      "hero": "art/hero_p24.webp",
+      "lessons": [
+       {
+        "number": "01",
+        "title": "Abord et examen clinique"
+       },
+       {
+        "number": "02",
+        "title": "Les aspects communicationnels de la rencontre avec le malade"
+       },
+       {
+        "number": "03",
+        "title": "Le stress et les maladies psychosomatiques"
+       },
+       {
+        "number": "04",
+        "title": "Fonctionnement de la personnalité"
+       },
+       {
+        "number": "05",
+        "title": "L'examen mental"
+       },
+       {
+        "number": "06",
+        "title": "Psychologie de la douleur"
+       },
+       {
+        "number": "07",
+        "title": "Psychologie de la prescription"
+       },
+       {
+        "number": "08",
+        "title": "L'annonce d'une maladie grave"
+       },
+       {
+        "number": "09",
+        "title": "Les Problèmes particuliers de l'entrevue psychiatrique"
+       }
+      ],
+      "children": []
+     },
+     {
+      "title": "Sémiologie",
+      "icon": "icons/p23_08.webp",
+      "hero": "art/hero_p41.webp",
+      "lessons": [],
+      "children": [
+       {
+        "title": "Générale",
+        "icon": "icons/p23_08.webp",
+        "hero": "art/hero_p41.webp",
+        "lessons": [
+         {
+          "number": "01",
+          "title": "Sémantique médicale"
+         },
+         {
+          "number": "02",
+          "title": "Abord et examen clinique"
+         },
+         {
+          "number": "03",
+          "title": "Observation médicale 01"
+         },
+         {
+          "number": "04",
+          "title": "Observation médicale 02"
+         },
+         {
+          "number": "05",
+          "title": "Les bases du raisonnement clinique 01"
+         },
+         {
+          "number": "06",
+          "title": "Les bases du raisonnement clinique 02"
+         },
+         {
+          "number": "07",
+          "title": "Troubles hydro-électrolytiques 01"
+         },
+         {
+          "number": "08",
+          "title": "Troubles hydro-électrolytiques 02"
+         },
+         {
+          "number": "09",
+          "title": "Sémio pondérale"
+         }
+        ],
+        "children": []
+       },
+       {
+        "title": "Cardio",
+        "icon": "icons/p23_08.webp",
+        "hero": "art/hero_p41.webp",
+        "lessons": [
+         {
+          "number": "01",
+          "title": "Examen cardiaque"
+         },
+         {
+          "number": "02",
+          "title": "Douleurs thoraciques"
+         },
+         {
+          "number": "03",
+          "title": "Auscultation cardiaque normale"
+         },
+         {
+          "number": "04",
+          "title": "Auscultation pathologique : les bruits surajoutés"
+         },
+         {
+          "number": "05",
+          "title": "Auscultation pathologique : les souffles"
+         },
+         {
+          "number": "06",
+          "title": "Syncopes et lipothymie"
+         },
+         {
+          "number": "07",
+          "title": "Syndrome coronarien aigu (SCA)"
+         },
+         {
+          "number": "08",
+          "title": "Péricardite"
+         },
+         {
+          "number": "09",
+          "title": "Valvulopathies mitrales"
+         },
+         {
+          "number": "10",
+          "title": "Valvulopathies Aortiques"
+         },
+         {
+          "number": "11",
+          "title": "Examen vasculaire"
+         },
+         {
+          "number": "12",
+          "title": "Angiopathies vasculaires"
+         },
+         {
+          "number": "13",
+          "title": "L'ECG"
+         }
+        ],
+        "children": []
+       },
+       {
+        "title": "Pneumo",
+        "icon": "icons/p23_08.webp",
+        "hero": "art/hero_p41.webp",
+        "lessons": [
+         {
+          "number": "01",
+          "title": "Interrogatoire en pneumologie"
+         },
+         {
+          "number": "02",
+          "title": "Examen physique"
+         },
+         {
+          "number": "03",
+          "title": "Auscultation pulmonaire"
+         },
+         {
+          "number": "04",
+          "title": "Douleur thoracique, vomique, dysphonie"
+         },
+         {
+          "number": "05",
+          "title": "Toux-Expectoration"
+         },
+         {
+          "number": "06",
+          "title": "Dyspnée-hémoptysie"
+         },
+         {
+          "number": "07",
+          "title": "Syndromes pulmonaires"
+         },
+         {
+          "number": "08",
+          "title": "Syndromes bronchiques"
+         },
+         {
+          "number": "09",
+          "title": "Syndromes pleuraux"
+         },
+         {
+          "number": "10",
+          "title": "Syndromes médiastinaux"
+         },
+         {
+          "number": "11",
+          "title": "Exploration pulmonaire"
+         },
+         {
+          "number": "12",
+          "title": "Exploration Fonctionnelle"
+         }
+        ],
+        "children": []
+       }
+      ]
+     },
+     {
+      "title": "Physiopathologie",
+      "icon": "badge:PhP",
+      "hero": "art/hero_p39.webp",
+      "lessons": [],
+      "children": [
+       {
+        "title": "Générale",
+        "icon": "badge:PhP",
+        "hero": "art/hero_p39.webp",
+        "lessons": [
+         {
+          "number": "01",
+          "title": "Les troubles hydro-electrolytiques"
+         },
+         {
+          "number": "02",
+          "title": "Les troubles de la thermorégulation"
+         },
+         {
+          "number": "03",
+          "title": "Physiopath de la dénutrition"
+         }
+        ],
+        "children": []
+       },
+       {
+        "title": "Cardio",
+        "icon": "badge:PhP",
+        "hero": "art/hero_p39.webp",
+        "lessons": [
+         {
+          "number": "01",
+          "title": "Insuffisance cardiaque aiguë"
+         },
+         {
+          "number": "02",
+          "title": "Choc cardiogénique"
+         },
+         {
+          "number": "03",
+          "title": "Choc Hypovolémique"
+         },
+         {
+          "number": "04",
+          "title": "Choc septique"
+         },
+         {
+          "number": "05",
+          "title": "Choc Anaphylactique"
+         },
+         {
+          "number": "06",
+          "title": "HTA"
+         }
+        ],
+        "children": []
+       },
+       {
+        "title": "Pneumo",
+        "icon": "badge:PhP",
+        "hero": "art/hero_p39.webp",
+        "lessons": [
+         {
+          "number": "01",
+          "title": "Troubles de l'hématose"
+         },
+         {
+          "number": "02",
+          "title": "Insuffisance respiratoire aiguë"
+         },
+         {
+          "number": "03",
+          "title": "Œdème aigu du poumon (OAP)"
+         },
+         {
+          "number": "04",
+          "title": "Maladie thrombo-embolique"
+         }
+        ],
+        "children": []
+       }
+      ]
+     },
+     {
+      "title": "Radiologie",
+      "icon": "badge:Rx",
+      "hero": "art/hero_p35.webp",
+      "lessons": [],
+      "children": [
+       {
+        "title": "Générale",
+        "icon": "badge:Rx",
+        "hero": "art/hero_p35.webp",
+        "lessons": [
+         {
+          "number": "01",
+          "title": "Généralités et principes de l'imagerie par rayons X"
+         },
+         {
+          "number": "02",
+          "title": "Imagerie par résonance magnétique (IRM)"
+         },
+         {
+          "number": "03",
+          "title": "Les produits de Contraste"
+         },
+         {
+          "number": "04",
+          "title": "Échographie et Échodoppler"
+         }
+        ],
+        "children": []
+       },
+       {
+        "title": "Cardio",
+        "icon": "badge:Rx",
+        "hero": "art/hero_p35.webp",
+        "lessons": [
+         {
+          "number": "01",
+          "title": "Exploration cardiovasculaire"
+         }
+        ],
+        "children": []
+       },
+       {
+        "title": "Pneumo",
+        "icon": "badge:Rx",
+        "hero": "art/hero_p35.webp",
+        "lessons": [
+         {
+          "number": "01",
+          "title": "Explorations en imagerie thoracique"
+         },
+         {
+          "number": "02",
+          "title": "Syndromes radiologiques thoraciques"
+         }
+        ],
+        "children": []
+       }
+      ]
+     },
+     {
+      "title": "Biochimie",
+      "icon": "icons/p23_03.webp",
+      "hero": "art/hero_p31.webp",
+      "lessons": [],
+      "children": [
+       {
+        "title": "Générale",
+        "icon": "icons/p23_03.webp",
+        "hero": "art/hero_p31.webp",
+        "lessons": [
+         {
+          "number": "01",
+          "title": "Biochimie de l'homme sain"
+         },
+         {
+          "number": "02",
+          "title": "Les étapes de l'analyse biochimique"
+         }
+        ],
+        "children": []
+       },
+       {
+        "title": "Cardio",
+        "icon": "icons/p23_03.webp",
+        "hero": "art/hero_p31.webp",
+        "lessons": [
+         {
+          "number": "01",
+          "title": "Les biomarqueurs cardiaques"
+         },
+         {
+          "number": "02",
+          "title": "Exploration lipidiques et l'athérogenèse"
+         },
+         {
+          "number": "03",
+          "title": "Stress oxydatif"
+         }
+        ],
+        "children": []
+       },
+       {
+        "title": "Pneumo",
+        "icon": "icons/p23_03.webp",
+        "hero": "art/hero_p31.webp",
+        "lessons": [
+         {
+          "number": "01",
+          "title": "Exploration biochimique du liquide de ponction"
+         }
+        ],
+        "children": []
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "title": "Unité 02 — Neuro-dermato-locomoteur",
+    "icon": "badge:02",
+    "hero": "art/hero_p25.webp",
+    "lessons": [],
+    "children": [
+     {
+      "title": "Sémiologie",
+      "icon": "icons/p23_08.webp",
+      "hero": "art/hero_p41.webp",
+      "lessons": [],
+      "children": [
+       {
+        "title": "Neuro",
+        "icon": "icons/p23_08.webp",
+        "hero": "art/hero_p41.webp",
+        "lessons": [
+         {
+          "number": "01",
+          "title": "Examen neurologique"
+         },
+         {
+          "number": "02",
+          "title": "Examen de la station debout et de la marche"
+         },
+         {
+          "number": "03",
+          "title": "Examen de la motricité et des réflexes, troubles de la motricité"
+         },
+         {
+          "number": "04",
+          "title": "Examen de la Sensibilité"
+         },
+         {
+          "number": "05",
+          "title": "Examen de fonctions supérieures"
+         },
+         {
+          "number": "06",
+          "title": "Algies cranio-faciales"
+         },
+         {
+          "number": "07",
+          "title": "Troubles de l'équilibre et de la coordination"
+         },
+         {
+          "number": "08",
+          "title": "Troubles de la Sensibilité"
+         },
+         {
+          "number": "09",
+          "title": "Nerfs I, II, VIII"
+         },
+         {
+          "number": "10",
+          "title": "Nerfs III, IV, V, VI, VII"
+         },
+         {
+          "number": "11",
+          "title": "Nerfs IX, X, XI, XII"
+         },
+         {
+          "number": "12",
+          "title": "Troubles de conscience"
+         },
+         {
+          "number": "13",
+          "title": "Explorations en neurologie"
+         }
+        ],
+        "children": []
+       },
+       {
+        "title": "Dermato",
+        "icon": "icons/p23_08.webp",
+        "hero": "art/hero_p41.webp",
+        "lessons": [
+         {
+          "number": "01",
+          "title": "Examen cutané"
+         },
+         {
+          "number": "02",
+          "title": "Lésions cutanées secondaires"
+         }
+        ],
+        "children": []
+       },
+       {
+        "title": "Locomoteur",
+        "icon": "icons/p23_08.webp",
+        "hero": "art/hero_p41.webp",
+        "lessons": [
+         {
+          "number": "01",
+          "title": "Généralités Rhumatologiques"
+         },
+         {
+          "number": "02",
+          "title": "MonoArthrite"
+         },
+         {
+          "number": "03",
+          "title": "Arthrose"
+         }
+        ],
+        "children": []
+       }
+      ]
+     },
+     {
+      "title": "Physiopathologie",
+      "icon": "badge:PhP",
+      "hero": "art/hero_p39.webp",
+      "lessons": [
+       {
+        "number": "01",
+        "title": "Œdèmes périphériques"
+       },
+       {
+        "number": "02",
+        "title": "Hypertension intracrânienne (HIC)"
+       },
+       {
+        "number": "03",
+        "title": "La Douleur"
+       },
+       {
+        "number": "04",
+        "title": "Troubles acido-basique"
+       }
+      ],
+      "children": []
+     },
+     {
+      "title": "Radiologie",
+      "icon": "badge:Rx",
+      "hero": "art/hero_p35.webp",
+      "lessons": [
+       {
+        "number": "01",
+        "title": "Neuro-imagerie"
+       },
+       {
+        "number": "02",
+        "title": "Imagerie locomoteur"
+       }
+      ],
+      "children": []
+     },
+     {
+      "title": "Biochimie",
+      "icon": "icons/p23_03.webp",
+      "hero": "art/hero_p31.webp",
+      "lessons": [
+       {
+        "number": "01",
+        "title": "Exploration du LCR (LCS)"
+       },
+       {
+        "number": "02",
+        "title": "Enzymes séro-tissulaires et musculaires"
+       }
+      ],
+      "children": []
+     }
+    ]
+   },
+   {
+    "title": "Unité 03 — Endocrino-uro-génital",
+    "icon": "badge:03",
+    "hero": "art/hero_p23.webp",
+    "lessons": [],
+    "children": [
+     {
+      "title": "Sémiologie",
+      "icon": "icons/p23_08.webp",
+      "hero": "art/hero_p41.webp",
+      "lessons": [],
+      "children": [
+       {
+        "title": "Endocrino",
+        "icon": "icons/p23_08.webp",
+        "hero": "art/hero_p41.webp",
+        "lessons": [
+         {
+          "number": "01",
+          "title": "Thyroïde"
+         },
+         {
+          "number": "02",
+          "title": "Glandes Surrénales"
+         },
+         {
+          "number": "03",
+          "title": "Pancréas"
+         },
+         {
+          "number": "04",
+          "title": "Parathyroïdes"
+         }
+        ],
+        "children": []
+       },
+       {
+        "title": "Gynéco",
+        "icon": "icons/p23_08.webp",
+        "hero": "art/hero_p41.webp",
+        "lessons": [
+         {
+          "number": "01",
+          "title": "Sénologie"
+         },
+         {
+          "number": "02",
+          "title": "Appareil génital ♂"
+         },
+         {
+          "number": "03",
+          "title": "Appareil génital ♀"
+         },
+         {
+          "number": "04",
+          "title": "Interrogatoire en gynécologie"
+         },
+         {
+          "number": "05",
+          "title": "L'examen Clinique en gynécologie"
+         },
+         {
+          "number": "06.1",
+          "title": "Signes fonctionnels en gynécologie (1)"
+         },
+         {
+          "number": "06.2",
+          "title": "Signes fonctionnels en gynécologie (2)"
+         }
+        ],
+        "children": []
+       },
+       {
+        "title": "Uro-Néphro",
+        "icon": "icons/p23_08.webp",
+        "hero": "art/hero_p41.webp",
+        "lessons": [
+         {
+          "number": "01",
+          "title": "Examen rénal"
+         }
+        ],
+        "children": []
+       }
+      ]
+     },
+     {
+      "title": "Physiopathologie",
+      "icon": "badge:PhP",
+      "hero": "art/hero_p39.webp",
+      "lessons": [
+       {
+        "number": "01",
+        "title": "Dyscalcémie"
+       },
+       {
+        "number": "02",
+        "title": "Dysphosphorémie"
+       },
+       {
+        "number": "03",
+        "title": "Insuffisance rénale aiguë (IRA)"
+       },
+       {
+        "number": "04",
+        "title": "L'acidose diabétique"
+       }
+      ],
+      "children": []
+     },
+     {
+      "title": "Radiologie",
+      "icon": "badge:Rx",
+      "hero": "art/hero_p35.webp",
+      "lessons": [
+       {
+        "number": "01",
+        "title": "Imagerie de thyroïde et des Parathyroïdes"
+       },
+       {
+        "number": "02",
+        "title": "Imagerie hypothalamo-hypophysaire"
+       },
+       {
+        "number": "03",
+        "title": "Imagerie des Surrénales"
+       },
+       {
+        "number": "04",
+        "title": "Uro-imagerie"
+       },
+       {
+        "number": "05",
+        "title": "Mammo-imagerie"
+       },
+       {
+        "number": "06",
+        "title": "Imagerie de l'appareil génital ♂"
+       },
+       {
+        "number": "07",
+        "title": "Imagerie de l'Appareil génital ♀"
+       }
+      ],
+      "children": []
+     },
+     {
+      "title": "Biochimie",
+      "icon": "icons/p23_03.webp",
+      "hero": "art/hero_p31.webp",
+      "lessons": [
+       {
+        "number": "01",
+        "title": "Endocrinopathies"
+       },
+       {
+        "number": "02",
+        "title": "Métabolisme phosphocalcique et du Remodelage osseux"
+       },
+       {
+        "number": "03",
+        "title": "Métabolisme des glucides"
+       },
+       {
+        "number": "04",
+        "title": "Exploration de la fonction rénale"
+       },
+       {
+        "number": "05",
+        "title": "Anomalies de l'acide urique"
+       },
+       {
+        "number": "06",
+        "title": "Anomalies Hydro-Electrolytiques"
+       }
+      ],
+      "children": []
+     }
+    ]
+   },
+   {
+    "title": "Unité 04 — Gastro-Hémato",
+    "icon": "badge:04",
+    "hero": "art/hero_p08.webp",
+    "lessons": [],
+    "children": [
+     {
+      "title": "Sémiologie",
+      "icon": "icons/p23_08.webp",
+      "hero": "art/hero_p41.webp",
+      "lessons": [],
+      "children": [
+       {
+        "title": "Gastro-Entéro",
+        "icon": "icons/p23_08.webp",
+        "hero": "art/hero_p41.webp",
+        "lessons": [
+         {
+          "number": "01",
+          "title": "Examen du Tube Digestif"
+         },
+         {
+          "number": "02",
+          "title": "Douleurs abdominales"
+         },
+         {
+          "number": "03",
+          "title": "Hémorragie digestive"
+         },
+         {
+          "number": "04",
+          "title": "Dysphagie"
+         },
+         {
+          "number": "05",
+          "title": "Vomissements"
+         },
+         {
+          "number": "06",
+          "title": "Diarrhée"
+         },
+         {
+          "number": "07",
+          "title": "Constipation"
+         },
+         {
+          "number": "08",
+          "title": "Occlusion intestinale aiguë"
+         },
+         {
+          "number": "09",
+          "title": "Ictère"
+         },
+         {
+          "number": "10",
+          "title": "Syndrome hépatitique"
+         },
+         {
+          "number": "11",
+          "title": "Hépatomégalie"
+         },
+         {
+          "number": "12",
+          "title": "Ascite"
+         },
+         {
+          "number": "13",
+          "title": "Péritonite"
+         },
+         {
+          "number": "14",
+          "title": "Appendicite"
+         }
+        ],
+        "children": []
+       },
+       {
+        "title": "Hémato",
+        "icon": "icons/p23_08.webp",
+        "hero": "art/hero_p41.webp",
+        "lessons": [
+         {
+          "number": "01",
+          "title": "Hémogramme"
+         },
+         {
+          "number": "02",
+          "title": "Anémie"
+         },
+         {
+          "number": "03",
+          "title": "Troubles de l'hémostase"
+         },
+         {
+          "number": "04",
+          "title": "Splénomégalie"
+         },
+         {
+          "number": "05",
+          "title": "Adénopathies"
+         }
+        ],
+        "children": []
+       }
+      ]
+     },
+     {
+      "title": "Physiopathologie",
+      "icon": "badge:PhP",
+      "hero": "art/hero_p39.webp",
+      "lessons": [
+       {
+        "number": "01",
+        "title": "Hémorragies digestives"
+       },
+       {
+        "number": "02",
+        "title": "Occlusion intestinale aiguë (OIA)"
+       },
+       {
+        "number": "03",
+        "title": "Hypertension portale (HTP)"
+       },
+       {
+        "number": "04",
+        "title": "Les Ictères"
+       },
+       {
+        "number": "05",
+        "title": "Dyskaliémies"
+       },
+       {
+        "number": "06",
+        "title": "Dysmagnésémies"
+       },
+       {
+        "number": "07",
+        "title": "Troubles de l'hémostase"
+       }
+      ],
+      "children": []
+     },
+     {
+      "title": "Radiologie",
+      "icon": "badge:Rx",
+      "hero": "art/hero_p35.webp",
+      "lessons": [
+       {
+        "number": "01",
+        "title": "Imagerie de l'abdomen"
+       },
+       {
+        "number": "02",
+        "title": "Imagerie Œso-gastro-duodénale"
+       },
+       {
+        "number": "03",
+        "title": "Imagerie du Foie, Voies biliaires et du Pancréas"
+       },
+       {
+        "number": "04",
+        "title": "Imagerie du Côlon et du Grêle"
+       },
+       {
+        "number": "05",
+        "title": "Imagerie des urgences abdominales non traumatiques"
+       }
+      ],
+      "children": []
+     },
+     {
+      "title": "Biochimie",
+      "icon": "icons/p23_03.webp",
+      "hero": "art/hero_p31.webp",
+      "lessons": [
+       {
+        "number": "01",
+        "title": "Exploration des protéines plasmatiques"
+       },
+       {
+        "number": "02",
+        "title": "Exploration des fonctions Hépatiques"
+       },
+       {
+        "number": "03",
+        "title": "Exploration de la digestion et de l'absorption"
+       },
+       {
+        "number": "04",
+        "title": "Marqueurs tumoraux sériques et génétiques"
+       }
+      ],
+      "children": []
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "semester": "M",
+  "modules": [
+   {
+    "title": "Anatomie pathologique",
+    "icon": "icons/p23_07.webp",
+    "hero": "art/hero_p40.webp",
+    "lessons": [
+     {
+      "number": "01",
+      "title": "Place de l'Ana et Cyto Pathologiques en médecine"
+     },
+     {
+      "number": "02",
+      "title": "Lésions cellulaires et tissulaires"
+     },
+     {
+      "number": "03",
+      "title": "Réponse adaptative cellulaires et tissulaires"
+     },
+     {
+      "number": "04",
+      "title": "Athérosclérose"
+     },
+     {
+      "number": "05",
+      "title": "Processus Inflammatoire"
+     },
+     {
+      "number": "06",
+      "title": "Aspects Cyto-Anapath des infections"
+     },
+     {
+      "number": "07",
+      "title": "Pathologie Vasculaire et troubles circulatoires I"
+     },
+     {
+      "number": "08",
+      "title": "Pathologie Vasculaire et troubles circulatoires II"
+     },
+     {
+      "number": "09",
+      "title": "Pathologie de la MEC"
+     },
+     {
+      "number": "10",
+      "title": "Affections immunitaires"
+     },
+     {
+      "number": "11",
+      "title": "Les Tumeurs"
+     },
+     {
+      "number": "12",
+      "title": "Base des classifications des tumeurs"
+     },
+     {
+      "number": "13",
+      "title": "Mécanismes moléculaires de la carcinogenèse"
+     },
+     {
+      "number": "14",
+      "title": "Progression du cancer"
+     },
+     {
+      "number": "15",
+      "title": "Étiologie des cancers"
+     },
+     {
+      "number": "16",
+      "title": "Les troubles des métabolismes"
+     },
+     {
+      "number": "17",
+      "title": "Les lymphomes"
+     },
+     {
+      "number": "18",
+      "title": "Les tumeurs épithéliales malpighiennes para malpighiennes"
+     },
+     {
+      "number": "19",
+      "title": "Les tumeurs mésenchymateuses"
+     },
+     {
+      "number": "20",
+      "title": "Les tumeurs glandulaires"
+     },
+     {
+      "number": "21",
+      "title": "Les tumeurs Embryonnaires"
+     },
+     {
+      "number": "22",
+      "title": "Les Tumeurs nerveuses et mélanocytaires"
+     }
+    ],
+    "children": []
+   },
+   {
+    "title": "Immunologie",
+    "icon": "icons/p23_06.webp",
+    "hero": "art/hero_p39.webp",
+    "lessons": [
+     {
+      "number": "01",
+      "title": "Techniques de dosage immunologiques"
+     },
+     {
+      "number": "02",
+      "title": "Techniques immunologiques avec marquage"
+     },
+     {
+      "number": "03",
+      "title": "Les déficits immunitaires"
+     },
+     {
+      "number": "04",
+      "title": "Maladies auto-immunes"
+     },
+     {
+      "number": "05",
+      "title": "HSA I"
+     },
+     {
+      "number": "06",
+      "title": "HSA II"
+     },
+     {
+      "number": "07",
+      "title": "HSA III"
+     },
+     {
+      "number": "08",
+      "title": "HSA IV"
+     },
+     {
+      "number": "09",
+      "title": "Immunité anti-infectieuse"
+     },
+     {
+      "number": "10",
+      "title": "Immunologie de la transplantation"
+     },
+     {
+      "number": "11",
+      "title": "Immuno-intervention"
+     },
+     {
+      "number": "12",
+      "title": "Immunoglobulinopathies monoclonales"
+     }
+    ],
+    "children": []
+   },
+   {
+    "title": "Microbiologie",
+    "icon": "icons/p07_05.webp",
+    "hero": "art/hero_p39.webp",
+    "lessons": [],
+    "children": [
+     {
+      "title": "Bactériologie",
+      "icon": "icons/p07_05.webp",
+      "hero": "art/hero_p39.webp",
+      "lessons": [
+       {
+        "number": "01",
+        "title": "Structure et anatomie bactérienne"
+       },
+       {
+        "number": "02",
+        "title": "Nutrition bactérienne"
+       },
+       {
+        "number": "03",
+        "title": "Croissance bactérienne"
+       },
+       {
+        "number": "04",
+        "title": "Génétique bactérienne"
+       },
+       {
+        "number": "05",
+        "title": "Relation hôte-bactérie"
+       },
+       {
+        "number": "06",
+        "title": "Structure et classification des antibiotiques"
+       },
+       {
+        "number": "07",
+        "title": "Résistance aux antibiotiques"
+       },
+       {
+        "number": "08",
+        "title": "Rôle du laboratoire"
+       },
+       {
+        "number": "09",
+        "title": "Antiseptiques et Désinfectants"
+       },
+       {
+        "number": "10",
+        "title": "Diagnostic bactériologique"
+       },
+       {
+        "number": "11",
+        "title": "Hygiène hospitalière"
+       },
+       {
+        "number": "12",
+        "title": "Cocci à Gram (+) et (-)"
+       },
+       {
+        "number": "13",
+        "title": "Bacilles à Gram (+)"
+       },
+       {
+        "number": "14",
+        "title": "Bacilles à Gram (-)"
+       },
+       {
+        "number": "15",
+        "title": "Bactéries aérobies"
+       },
+       {
+        "number": "16",
+        "title": "Bactéries anaérobies"
+       },
+       {
+        "number": "17",
+        "title": "Vaccins"
+       }
+      ],
+      "children": []
+     },
+     {
+      "title": "Virologie",
+      "icon": "icons/p07_05.webp",
+      "hero": "art/hero_p39.webp",
+      "lessons": [
+       {
+        "number": "01",
+        "title": "Structure des virus et classification"
+       },
+       {
+        "number": "02",
+        "title": "Multiplication virus"
+       },
+       {
+        "number": "03",
+        "title": "Diagnostic virologique"
+       },
+       {
+        "number": "04",
+        "title": "Physiopath des infections virales"
+       },
+       {
+        "number": "05",
+        "title": "Virus à ADN"
+       },
+       {
+        "number": "06",
+        "title": "Autres virus à ADN"
+       },
+       {
+        "number": "07",
+        "title": "Virus à ARN"
+       },
+       {
+        "number": "08",
+        "title": "Coronavirus"
+       },
+       {
+        "number": "09",
+        "title": "Traitement des infections virales"
+       }
+      ],
+      "children": []
+     }
+    ]
+   },
+   {
+    "title": "Pharmacologie",
+    "icon": "icons/p07_04.webp",
+    "hero": "art/hero_p36.webp",
+    "lessons": [
+     {
+      "number": "01",
+      "title": "Introduction à la Pharmacologie"
+     },
+     {
+      "number": "02",
+      "title": "Système ADME"
+     },
+     {
+      "number": "03",
+      "title": "Paramètres de Pharmacocinétique"
+     },
+     {
+      "number": "04",
+      "title": "Pharmaco-dynamique"
+     },
+     {
+      "number": "05",
+      "title": "Cibles et mécanismes d'action"
+     },
+     {
+      "number": "06",
+      "title": "Interactions médicamenteuses"
+     },
+     {
+      "number": "07",
+      "title": "Effets nocifs des médicaments"
+     },
+     {
+      "number": "08",
+      "title": "Développement des Médicaments"
+     },
+     {
+      "number": "09",
+      "title": "Pharmacovigilance"
+     },
+     {
+      "number": "10",
+      "title": "Aspects Médico-légaux"
+     },
+     {
+      "number": "11",
+      "title": "Antalgiques"
+     },
+     {
+      "number": "12",
+      "title": "Les Antihypertenseurs"
+     },
+     {
+      "number": "13",
+      "title": "Les Diurétiques"
+     },
+     {
+      "number": "14",
+      "title": "Médicaments du SNS"
+     },
+     {
+      "number": "15",
+      "title": "Médicaments du SNPS"
+     },
+     {
+      "number": "16",
+      "title": "Femme et médicaments"
+     },
+     {
+      "number": "17.a",
+      "title": "ẞ-lactamines et Glycopeptides"
+     },
+     {
+      "number": "17.b",
+      "title": "Aminosides, Tétracyclines et les Phénicolés"
+     },
+     {
+      "number": "17.c",
+      "title": "Macrolides, Quinolones et les Sulfamides"
+     },
+     {
+      "number": "TD",
+      "title": "TD — Pharmacovigilance"
+     }
+    ],
+    "children": []
+   },
+   {
+    "title": "Parasitologie",
+    "icon": "icons/p23_05.webp",
+    "hero": "art/hero_p39.webp",
+    "lessons": [
+     {
+      "number": "01",
+      "title": "Introduction à la parasitologie"
+     },
+     {
+      "number": "02",
+      "title": "Amibiase"
+     },
+     {
+      "number": "03",
+      "title": "Amibes libres"
+     },
+     {
+      "number": "04",
+      "title": "Flagellés et ciliés"
+     },
+     {
+      "number": "05",
+      "title": "Cryptosporidiose et coccidioses intestinales"
+     },
+     {
+      "number": "06",
+      "title": "Leishmanioses"
+     },
+     {
+      "number": "07",
+      "title": "Trypanosomiases"
+     },
+     {
+      "number": "08",
+      "title": "Toxoplasmes"
+     },
+     {
+      "number": "09",
+      "title": "Le Paludisme"
+     },
+     {
+      "number": "10",
+      "title": "Cestodes adultes"
+     },
+     {
+      "number": "11",
+      "title": "Cestodes larvaires"
+     },
+     {
+      "number": "12",
+      "title": "Distomes"
+     },
+     {
+      "number": "13",
+      "title": "Schistosomoses et Bilharzioses"
+     },
+     {
+      "number": "14",
+      "title": "Nématodes et nématodoses"
+     },
+     {
+      "number": "15",
+      "title": "Syndrome de Larva Migrans"
+     },
+     {
+      "number": "16",
+      "title": "Filaires et Filarioses"
+     },
+     {
+      "number": "17",
+      "title": "Entomologie et Gale"
+     },
+     {
+      "number": "18",
+      "title": "Introduction à la mycologie"
+     },
+     {
+      "number": "19",
+      "title": "Candida et Candidoses"
+     },
+     {
+      "number": "20",
+      "title": "Cryptococcose"
+     },
+     {
+      "number": "21",
+      "title": "Malassezioses"
+     },
+     {
+      "number": "22",
+      "title": "Histoplasmoses"
+     },
+     {
+      "number": "23",
+      "title": "Dermatophytes et dermatophyties"
+     },
+     {
+      "number": "24",
+      "title": "Aspergillus et Aspergilloses"
+     },
+     {
+      "number": "25",
+      "title": "Sporotrichose"
+     }
+    ],
+    "children": []
+   }
+  ]
+ }
+]

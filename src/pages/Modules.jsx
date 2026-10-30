@@ -63,11 +63,11 @@ export function ModulesPage() {
   if (error) return <ErrorBox error={error} onRetry={reload} title="Courses could not be loaded" />;
   if (!ready) return <Loader />;
   const roots = tree.roots.filter((m) => m.year === year && m.semester === sem && m.active !== false);
-  const info = sectionInfo(sem);
+  const info = sectionInfo(sem, year);
   const all = stats(roots.flatMap((r) => allLessons(r)), pmap);
   return (
     <div className="page">
-      <PageHeader title={info.title} subtitle={year === 2 && sem === 'U' ? 'Choose a unit' : 'Choose a subject'} hero={info.hero} />
+      <PageHeader title={info.title} subtitle={year > 1 && sem === 'U' ? 'Choose a unit' : 'Choose a subject'} hero={info.hero} />
       <SemesterTabs value={sem} onChange={setSem} />
       <section className="card overall">
         <div className="row between"><h2 className="h3">{year === 1 ? 'Semester progress' : `${info.tab} — progress`}</h2><strong className="pct big">{fmtPct(all.pct)}</strong></div>
