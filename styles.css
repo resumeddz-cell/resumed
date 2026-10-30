@@ -570,3 +570,22 @@ textarea.lined {
 .music-vol { display: flex; align-items: center; gap: .5rem; color: var(--teal-700); }
 .music-vol input[type=range] { flex: 1; accent-color: var(--teal-500); min-height: 0; padding: 0; border: 0; box-shadow: none; background: transparent; }
 @media (max-width: 380px) { .music-opt span { font-size: .7rem; } }
+
+/* Carnet de stage */
+.stage-editor { display: grid; gap: .7rem; align-content: start; }
+.stage-editor .field { margin: 0; }
+.stage-editor .field-label { display: inline-flex; align-items: center; gap: .35rem; }
+.stage-editor .field-label svg { color: var(--teal-600); }
+.stage-meta { display: flex; gap: .7rem; flex-wrap: wrap; }
+.stage-meta .field:first-child { flex: 0 0 auto; min-width: 170px; }
+.stage-meta .grow { flex: 1 1 240px; }
+.stage-topic { font-family: var(--hand); font-size: 1.15rem; }
+.stage-two { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: .7rem; }
+.stage-block textarea { min-height: 150px; width: 100%; }
+.stage-block.learned textarea { min-height: 200px; }
+.stage-block.weak .field-label, .stage-block.weak .field-label svg { color: var(--pink-600); }
+.stage-block.weak textarea { background-color: var(--pink-50); border-color: var(--pink-200); }
+.stage-block.strong .field-label, .stage-block.strong .field-label svg { color: var(--mint-600); }
+.stage-block.strong textarea { background-color: #f1fdf9; border-color: var(--mint-200); }
+.stage-item-date { font-size: .78rem; font-weight: 800; color: var(--pink-600); text-transform: capitalize; }
+@media (max-width: 700px) { .stage-two { grid-template-columns: minmax(0, 1fr); } }
