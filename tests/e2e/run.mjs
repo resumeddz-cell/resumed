@@ -52,6 +52,7 @@ async function newUser(browser, viewport = { width: 1366, height: 900 }, label =
 async function login(page, u, { expectFail = false } = {}) {
   await page.goto(`${BASE}/#/login`);
   await page.locator('input[type=email]').fill(u.email);
+  await page.getByRole('button', { name: /continue/i }).click();
   await page.locator('input[type=password]').fill(u.password);
   await page.getByRole('button', { name: /continue/i }).click();
   if (expectFail) return;
@@ -67,6 +68,7 @@ async function register(page, u) {
   await page.goto(`${BASE}/#/register`);
   const pw = page.locator('input[type=password]');
   await page.locator('input[type=email]').fill(u.email);
+  await page.getByRole('button', { name: /continue/i }).click();
   await pw.nth(0).fill(u.password); await pw.nth(1).fill(u.password);
   await page.getByRole('button', { name: /create account/i }).click();
 }

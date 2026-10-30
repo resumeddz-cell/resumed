@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+import React, { useLayoutEffect, useRef, useState } from 'react';
 import { LuMail, LuLock, LuArrowRight, LuRefreshCw, LuLogOut } from 'react-icons/lu';
 import { auth, DEMO_ACCOUNTS } from '../lib/supabase.js';
 import { navigate } from '../lib/router.js';
 import { useAuth } from '../state/auth.jsx';
-import { Field } from '../components/ui.jsx';
 import { WavingMascot } from '../components/Mascot.jsx';
 import { t } from '../lib/i18n.js';
 
@@ -19,32 +18,66 @@ function authError(e) {
   return m || 'Something went wrong. Please try again.';
 }
 
-export function AuthShell({ children }) {
+// Login / sign-up screens: the illustrated poster from the PDF (page 1) with a real form placed where
+// the drawn one was. Everything is sized in "u" = 1% of the poster width, so the layout matches the
+// artwork at every screen size; inputs keep a 16px minimum so phones don't zoom in.
+export function AuthShell({ title, children, tall = false }) {
+  const ref = useRef(null);
+  useLayoutEffect(() => {
+    const el = ref.current; if (!el) return undefined;
+    const set = () => el.style.setProperty('--u', `${el.clientWidth / 100}px`);
+    set();
+    if (typeof ResizeObserver === 'undefined') { window.addEventListener('resize', set); return () => window.removeEventListener('resize', set); }
+    const ro = new ResizeObserver(set); ro.observe(el); return () => ro.disconnect();
+  }, []);
   return (
     <div className="auth-shell">
-      <div className="auth-art">
-        <WavingMascot className="auth-mascot" float />
-      </div>
-      <div className="auth-panel">
-        <WavingMascot className="auth-mascot-mobile" float />
-        <img src="assets/art/logo_teal.webp" alt="Resumed Planner — Plan · Study · Track · Succeed" className="auth-logo" />
-        <div className="auth-card card">{children}</div>
-        <p className="auth-foot">Better study, better future ♡</p>
+      <div className={`auth-poster${tall ? ' is-tall' : ''}`} ref={ref}>
+        <img className="auth-bg" src="assets/art/login_poster.webp" srcSet="assets/art/login_poster_sm.webp 812w, assets/art/login_poster.webp 1624w"
+             sizes="(min-aspect-ratio: 1624/2293) 71vh, 100vw" alt="Resumed Planner — Plan · Study · Track · Succeed" />
+        <img className="auth-better" src="assets/art/login_better.webp" alt="" aria-hidden />
+        <div className="auth-zone">
+          <div className="lp-head">
+            <img className="lp-spark lp-spark-l" src="assets/art/login_spark_l.webp" alt="" aria-hidden />
+            <h1 className="lp-title" style={{ '--fs': Math.min(3.9, 30 / (0.39 * String(title).length)).toFixed(2) }}>{title}</h1>
+            <img className="lp-spark lp-spark-r" src="assets/art/login_spark_r.webp" alt="" aria-hidden />
+          </div>
+          <img className="lp-arrow" src="assets/art/login_arrow.webp" alt="" aria-hidden />
+          {children}
+        </div>
       </div>
     </div>
+  );
+}
+
+function PillInput({ icon: Icon, label, ...props }) {
+  return (
+    <label className="lp-input">
+      <span className="sr-only">{label}</span>
+      <Icon aria-hidden />
+      <input {...props} />
+    </label>
   );
 }
 
 function Notice() {
   const { notice } = useAuth();
   if (!notice) return null;
-  return <p className={`notice notice-${notice.type}`} role="alert">{notice.text}</p>;
+  return <p className={`lp-msg lp-msg-${notice.type}`} role="alert">{notice.text}</p>;
 }
 
+const validEmail = (v) => /^\S+@\S+\.\S+$/.test(v.trim());
+
 export function LoginPage() {
+  const [step, setStep] = useState('email');
   const [email, setEmail] = useState(''); const [password, setPassword] = useState('');
   const [busy, setBusy] = useState(false); const [err, setErr] = useState(null);
   const { setNotice } = useAuth();
+  const next = (e) => {
+    e.preventDefault(); setErr(null);
+    if (!validEmail(email)) { setErr('Please enter a valid e-mail address.'); return; }
+    setStep('password');
+  };
   const submit = async (e) => {
     e.preventDefault(); setErr(null); setBusy(true);
     try { setNotice(null); await auth.signIn(email.trim(), password); navigate('/', { replace: true }); }
@@ -55,49 +88,58 @@ export function LoginPage() {
     try { await auth.signIn(acc.email, acc.password); navigate('/', { replace: true }); }
     catch (x) { setErr(authError(x)); } finally { setBusy(false); }
   };
+  const demo = __DEMO__ && DEMO_ACCOUNTS;
   return (
-    <AuthShell>
-      <h1 className="auth-title">{t('welcomeBack')}</h1>
+    <AuthShell title={step === 'email' ? 'Enter your email' : 'Enter your password'} tall={!!demo || step === 'password' || !!err}>
+      {step === 'email' ? (
+        <form className="lp-form" onSubmit={next} noValidate>
+          <PillInput icon={LuMail} label="E-mail" type="email" autoComplete="username email" inputMode="email" autoFocus
+                     value={email} onChange={(e) => setEmail(e.target.value)} placeholder="your email address" />
+          {err && <p className="lp-msg lp-msg-error" role="alert">{err}</p>}
+          <button className="lp-btn" disabled={busy}>Continue <LuArrowRight aria-hidden /></button>
+        </form>
+      ) : (
+        <form className="lp-form" onSubmit={submit} noValidate>
+          <input type="email" name="username" autoComplete="username" value={email} readOnly hidden />
+          <p className="lp-who"><span>{email.trim()}</span>
+            <button type="button" className="lp-link" onClick={() => { setStep('email'); setPassword(''); setErr(null); }}>change</button></p>
+          <PillInput icon={LuLock} label="Password" type="password" autoComplete="current-password" autoFocus
+                     value={password} onChange={(e) => setPassword(e.target.value)} placeholder="your password" />
+          {err && <p className="lp-msg lp-msg-error" role="alert">{err}</p>}
+          <button className="lp-btn" disabled={busy}>{busy ? 'Signing in…' : 'Continue'} <LuArrowRight aria-hidden /></button>
+        </form>
+      )}
+      <div className="lp-links">
+        {step === 'password' && <a href="#/forgot">Forgot password?</a>}
+        <span>New here? <a href="#/register">Create an account</a></span>
+      </div>
       <Notice />
-      {__DEMO__ && DEMO_ACCOUNTS && (
-        <div className="demo-login">
-          <p className="small"><strong>Try the demo</strong> — sign in with one tap:</p>
-          <div className="row gap wrap">
+      {demo && (
+        <div className="lp-demo">
+          <p><strong>Try the demo</strong> — sign in with one tap:</p>
+          <div className="row gap wrap center">
             <button className="btn btn-primary btn-small" disabled={busy} onClick={() => demoLogin(DEMO_ACCOUNTS.student)}>Student account</button>
             <button className="btn btn-pink btn-small" disabled={busy} onClick={() => demoLogin(DEMO_ACCOUNTS.admin)}>Administrator account</button>
           </div>
-          <p className="muted xsmall">Or create a new account below: it will wait for approval in the administrator dashboard.</p>
         </div>
       )}
-      <form onSubmit={submit} noValidate>
-        <Field label={t('email')}>
-          <div className="input-icon"><LuMail aria-hidden /><input type="email" autoComplete="email" required value={email}
-            onChange={(e) => setEmail(e.target.value)} placeholder="your email address" /></div>
-        </Field>
-        <Field label={t('password')}>
-          <div className="input-icon"><LuLock aria-hidden /><input type="password" autoComplete="current-password" required value={password}
-            onChange={(e) => setPassword(e.target.value)} /></div>
-        </Field>
-        {err && <p className="form-error" role="alert">{err}</p>}
-        <button className="btn btn-primary btn-block" disabled={busy || !email || !password}>{busy ? 'Signing in…' : 'Continue'} <LuArrowRight aria-hidden /></button>
-      </form>
-      <div className="auth-links">
-        <a href="#/forgot">{t('forgotPassword')}</a>
-        <span>{t('noAccount')} <a href="#/register">{t('signUp')}</a></span>
-      </div>
     </AuthShell>
   );
 }
 
 export function RegisterPage() {
+  const [step, setStep] = useState('email');
   const [email, setEmail] = useState(''); const [pw, setPw] = useState(''); const [pw2, setPw2] = useState('');
   const [busy, setBusy] = useState(false); const [err, setErr] = useState(null); const [done, setDone] = useState(false);
-  const pwErr = pw && pw.length < 8 ? t('pwRule') : null;
-  const mismatch = pw2 && pw !== pw2 ? t('pwMismatch') : null;
+  const next = (e) => {
+    e.preventDefault(); setErr(null);
+    if (!validEmail(email)) { setErr('Please enter a valid e-mail address.'); return; }
+    setStep('password');
+  };
   const submit = async (e) => {
     e.preventDefault(); setErr(null);
-    if (!/^\S+@\S+\.\S+$/.test(email.trim())) { setErr('Please enter a valid e-mail address.'); return; }
-    if (pw.length < 8 || pw !== pw2) return;
+    if (pw.length < 8) { setErr('Your password needs at least 8 characters.'); return; }
+    if (pw !== pw2) { setErr(t('pwMismatch')); return; }
     setBusy(true);
     try {
       const res = await auth.signUp(email.trim(), pw);
@@ -106,30 +148,38 @@ export function RegisterPage() {
   };
   if (done) {
     return (
-      <AuthShell>
-        <h1 className="auth-title">Check your inbox</h1>
-        <p>{t('checkEmail')}</p>
-        <p className="muted small">After confirming, your registration will wait for the administrator's approval.</p>
-        <a className="btn btn-primary btn-block" href="#/login">{t('signIn')}</a>
+      <AuthShell title="Check your inbox">
+        <p className="lp-text">{t('checkEmail')}</p>
+        <p className="lp-text lp-small">After confirming, your registration will wait for the administrator's approval.</p>
+        <a className="lp-btn" href="#/login">Sign in <LuArrowRight aria-hidden /></a>
       </AuthShell>
     );
   }
   return (
-    <AuthShell>
-      <h1 className="auth-title">{t('createYourAccount')}</h1>
-      <p className="muted small">New accounts are reviewed by the administrator before access is granted.</p>
-      <form onSubmit={submit} noValidate>
-        <Field label={t('email')}><div className="input-icon"><LuMail aria-hidden />
-          <input type="email" autoComplete="email" value={email} onChange={(e) => setEmail(e.target.value)} required /></div></Field>
-        <Field label={t('password')} hint={t('pwRule')} error={pwErr}><div className="input-icon"><LuLock aria-hidden />
-          <input type="password" autoComplete="new-password" value={pw} onChange={(e) => setPw(e.target.value)} required /></div></Field>
-        <Field label={t('confirmPassword')} error={mismatch}><div className="input-icon"><LuLock aria-hidden />
-          <input type="password" autoComplete="new-password" value={pw2} onChange={(e) => setPw2(e.target.value)} required /></div></Field>
-        {err && <p className="form-error" role="alert">{err}</p>}
-        <button className="btn btn-primary btn-block" disabled={busy || !email || pw.length < 8 || pw !== pw2}>
-          {busy ? 'Creating…' : t('signUp')} <LuArrowRight aria-hidden /></button>
-      </form>
-      <div className="auth-links"><span>{t('haveAccount')} <a href="#/login">{t('signIn')}</a></span></div>
+    <AuthShell title={step === 'email' ? 'Create your account' : 'Choose a password'} tall={step === 'password' || !!err}>
+      {step === 'email' ? (
+        <form className="lp-form" onSubmit={next} noValidate>
+          <PillInput icon={LuMail} label="E-mail" type="email" autoComplete="email" inputMode="email" autoFocus
+                     value={email} onChange={(e) => setEmail(e.target.value)} placeholder="your email address" />
+          {err && <p className="lp-msg lp-msg-error" role="alert">{err}</p>}
+          <button className="lp-btn" disabled={busy}>Continue <LuArrowRight aria-hidden /></button>
+        </form>
+      ) : (
+        <form className="lp-form" onSubmit={submit} noValidate>
+          <input type="email" name="username" autoComplete="username" value={email} readOnly hidden />
+          <p className="lp-who"><span>{email.trim()}</span>
+            <button type="button" className="lp-link" onClick={() => { setStep('email'); setErr(null); }}>change</button></p>
+          <PillInput icon={LuLock} label="Password" type="password" autoComplete="new-password" autoFocus
+                     value={pw} onChange={(e) => setPw(e.target.value)} placeholder="password (8+ characters)" />
+          <PillInput icon={LuLock} label="Confirm password" type="password" autoComplete="new-password"
+                     value={pw2} onChange={(e) => setPw2(e.target.value)} placeholder="confirm password" />
+          {err && <p className="lp-msg lp-msg-error" role="alert">{err}</p>}
+          <button className="lp-btn" disabled={busy}>{busy ? 'Creating…' : 'Create account'} <LuArrowRight aria-hidden /></button>
+        </form>
+      )}
+      <div className="lp-links">
+        <span>Already have an account? <a href="#/login">Sign in</a></span>
+      </div>
     </AuthShell>
   );
 }
@@ -138,22 +188,23 @@ export function ForgotPage() {
   const [email, setEmail] = useState(''); const [busy, setBusy] = useState(false);
   const [sent, setSent] = useState(false); const [err, setErr] = useState(null);
   const submit = async (e) => {
-    e.preventDefault(); setErr(null); setBusy(true);
+    e.preventDefault(); setErr(null);
+    if (!validEmail(email)) { setErr('Please enter a valid e-mail address.'); return; }
+    setBusy(true);
     try { await auth.resetPasswordForEmail(email.trim()); setSent(true); }
     catch (x) { setErr(authError(x)); } finally { setBusy(false); }
   };
   return (
-    <AuthShell>
-      <h1 className="auth-title">Reset your password</h1>
-      {sent ? <p className="notice notice-ok">{t('resetSent')}</p> : (
-        <form onSubmit={submit} noValidate>
-          <Field label={t('email')}><div className="input-icon"><LuMail aria-hidden />
-            <input type="email" autoComplete="email" value={email} onChange={(e) => setEmail(e.target.value)} required /></div></Field>
-          {err && <p className="form-error" role="alert">{err}</p>}
-          <button className="btn btn-primary btn-block" disabled={busy || !email}>{busy ? 'Sending…' : t('sendResetLink')}</button>
+    <AuthShell title="Reset your password" tall={!!err || sent}>
+      {sent ? <p className="lp-msg lp-msg-ok">{t('resetSent')}</p> : (
+        <form className="lp-form" onSubmit={submit} noValidate>
+          <PillInput icon={LuMail} label="E-mail" type="email" autoComplete="email" inputMode="email" autoFocus
+                     value={email} onChange={(e) => setEmail(e.target.value)} placeholder="your email address" />
+          {err && <p className="lp-msg lp-msg-error" role="alert">{err}</p>}
+          <button className="lp-btn" disabled={busy}>{busy ? 'Sending…' : t('sendResetLink')}</button>
         </form>
       )}
-      <div className="auth-links"><a href="#/login">← {t('signIn')}</a></div>
+      <div className="lp-links"><a href="#/login">← Back to sign in</a></div>
     </AuthShell>
   );
 }
@@ -163,21 +214,21 @@ export function NewPasswordPage({ onDone }) {
   const [busy, setBusy] = useState(false); const [err, setErr] = useState(null);
   const submit = async (e) => {
     e.preventDefault(); setErr(null);
-    if (pw.length < 8 || pw !== pw2) return;
+    if (pw.length < 8) { setErr('Your password needs at least 8 characters.'); return; }
+    if (pw !== pw2) { setErr(t('pwMismatch')); return; }
     setBusy(true);
     try { await auth.updatePassword(pw); onDone(); }
     catch (x) { setErr(authError(x)); } finally { setBusy(false); }
   };
   return (
-    <AuthShell>
-      <h1 className="auth-title">Choose a new password</h1>
-      <form onSubmit={submit} noValidate>
-        <Field label={t('newPassword')} hint={t('pwRule')} error={pw && pw.length < 8 ? t('pwRule') : null}>
-          <input type="password" autoComplete="new-password" value={pw} onChange={(e) => setPw(e.target.value)} /></Field>
-        <Field label={t('confirmPassword')} error={pw2 && pw !== pw2 ? t('pwMismatch') : null}>
-          <input type="password" autoComplete="new-password" value={pw2} onChange={(e) => setPw2(e.target.value)} /></Field>
-        {err && <p className="form-error" role="alert">{err}</p>}
-        <button className="btn btn-primary btn-block" disabled={busy || pw.length < 8 || pw !== pw2}>{busy ? t('saving') : t('savePassword')}</button>
+    <AuthShell title="Choose a new password" tall>
+      <form className="lp-form" onSubmit={submit} noValidate>
+        <PillInput icon={LuLock} label={t('newPassword')} type="password" autoComplete="new-password" autoFocus
+                   value={pw} onChange={(e) => setPw(e.target.value)} placeholder="new password (8+ characters)" />
+        <PillInput icon={LuLock} label={t('confirmPassword')} type="password" autoComplete="new-password"
+                   value={pw2} onChange={(e) => setPw2(e.target.value)} placeholder="confirm password" />
+        {err && <p className="lp-msg lp-msg-error" role="alert">{err}</p>}
+        <button className="lp-btn" disabled={busy}>{busy ? t('saving') : t('savePassword')}</button>
       </form>
     </AuthShell>
   );
