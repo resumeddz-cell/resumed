@@ -1,11 +1,11 @@
 <!doctype html>
-<html lang="en">
+<html lang="fr">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>Resumed Study Tracker</title>
   <meta name="description" content="Resumed Study Tracker — plan, study, track and succeed in your first year of medicine." />
-  <meta name="theme-color" content="#3fc8cd" />
+  <meta name="theme-color" content="#fbf9fc" />
   <link rel="manifest" href="manifest.webmanifest" />
   <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png" />
   <link rel="apple-touch-icon" href="icons/icon-192.png" />
@@ -13,13 +13,21 @@
   <meta name="apple-mobile-web-app-title" content="Resumed" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&family=Nunito:wght@400;600;700;800&family=Patrick+Hand&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=mwuo6cns" />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Outfit:wght@300;400;500;600;700&family=Tajawal:wght@400;500;700;800&family=Kalam:wght@700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css?v=mww91ze6" />
 </head>
 <body>
   <noscript>Resumed Study Tracker needs JavaScript enabled.</noscript>
   <div id="root"></div>
-  <script src="config.js?v=mwuo6cns"></script>
-  <script src="app.js?v=mwuo6cns"></script>
+  <script>
+    // language before the first paint; inside the Resumed platform the planner is shown in a frame ("embedded")
+    try { var l = localStorage.getItem("resumed.lang.v1") || "fr"; document.documentElement.lang = l; document.documentElement.dir = l === "ar" ? "rtl" : "ltr";
+      if (window.self !== window.top) document.documentElement.classList.add("embedded");
+      // opened on its own on the real site: show it inside the platform (e-mail links and password reset stay here)
+      else if (location.hostname === "resumeddz-cell.github.io" && !/access_token|error|type=|^#\/forgot/.test(location.hash) && !/[?&]reset=/.test(location.search)) location.replace("/#mon-planner");
+    } catch (e) {}
+  </script>
+  <script src="config.js?v=mww91ze6"></script>
+  <script src="app.js?v=mww91ze6"></script>
 </body>
 </html>
